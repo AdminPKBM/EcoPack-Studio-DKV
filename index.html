@@ -606,5 +606,89 @@
             });
         }
     </script>
+
+<script>
+    // Objek Audio Utama menggunakan Web Audio API
+    const Sound = {
+        enabled: true,
+        ctx: null,
+
+        // Inisialisasi Audio Context saat interaksi pertama (Aturan Keamanan Browser)
+        init() {
+            if (!this.ctx) {
+                this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        },
+
+        // Fungsi Toggle Aktif/Nonaktifkan Suara
+        toggle() {
+            this.enabled = !this.enabled;
+            const btn = document.getElementById('sound-toggle-btn');
+            if (btn) {
+                btn.innerHTML = this.enabled ? '🔊 Audio: Aktif' : '🔇 Audio: Nonaktif';
+            }
+        },
+
+        // Fungsi Memutar Efek Suara
+        play(type) {
+            if (!this.enabled) return;
+            
+            try {
+                this.init();
+                // Aktifkan kembali jika sempat di-suspend oleh browser
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+
+                if (type === 'click') {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    osc.type = 'sine'; // Tipe gelombang lembut
+                    osc.frequency.setValueAtTime(600, this.ctx.currentTime); // Frekuensi awal (tinggi)
+                    osc.frequency.exponentialRampToValueAtTime(200, this.ctx.currentTime + 0.1); // Menurun cepat
+
+                    gain.gain.setValueAtTime(0.1, this.ctx.currentTime); // Volume awal
+                    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.1); // Efek fade out
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.1); // Durasi suara klik (0.1 detik)
+                }
+            } catch (error) {
+                console.warn("Gagal memutar audio:", error);
+            }
+        }
+    };
+
+    // Fungsi placeholder tambahan agar halaman Anda tidak error saat tombol dicoba:
+    function switchMode(mode) {
+        Sound.play('click');
+        if (mode === 'sim') {
+            document.getElementById('panel-modul').classList.add('hidden');
+            document.getElementById('panel-sim').classList.remove('hidden');
+            document.getElementById('metric-bar').classList.remove('hidden');
+        } else {
+            document.getElementById('panel-modul').classList.remove('hidden');
+            document.getElementById('panel-sim').classList.add('hidden');
+            document.getElementById('metric-bar').classList.add('hidden');
+        }
+    }
+
+    function startApp() {
+        Sound.play('click');
+        document.getElementById('stage-login').classList.add('hidden');
+        document.getElementById('stage-career').classList.remove('hidden');
+    }
+
+    function selectCareer(career) {
+        Sound.play('click');
+        alert('Anda memilih karir: ' + career);
+        // Lanjutkan logika simulasi Anda di sini...
+    }
+</script>
+    
 </body>
 </html>
