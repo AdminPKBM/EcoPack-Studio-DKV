@@ -795,7 +795,7 @@
         function kirimKeGoogleSheets() {
             const btn = document.getElementById('btn-sheets');
             
-            if (WEB_APP_URL === "https://script.google.com/macros/s/AKfycbxBInEXbQaeoPgPPOlOkD9BLCUs8YCtZqXxEgRoIGhoUX17k4-rSXEXF_DmfckglE2d/exec" || !WEB_APP_URL) {
+            if (WEB_APP_URL === "https://script.google.com/macros/s/AKfycbxq1KOODRVglflVnx_lHbxOCnI61NVu0AeLL_W_Cz7WFftb_GRgKHFehSicZWmxT8Y8/exec" || !WEB_APP_URL) {
                 Sound.play('alert');
                 alert("Pengiriman tertolak! Guru Anda belum menyematkan konfigurasi URL Web App Google Apps Script di dalam kode sumber.");
                 return;
@@ -806,13 +806,13 @@
             btn.className = "flex items-center gap-2 bg-gray-800 text-slate-500 px-5 py-3 rounded-xl font-bold text-xs pointer-events-none";
 
             const payload = {
-                nama: studentData.nama,
-                sekolah: studentData.sekolah,
-                karir: studentData.karir,
-                skor_nomor1: scores.design,
-                skor_nomor2: scores.client,
-                skor_nomor3: scores.eco
-            };
+    nama: studentData.nama,
+    sekolah: studentData.sekolah,
+    karir: studentData.karir,
+    skor_nirmana: scores.design,  // Ubah dari skor_nomor1
+    skor_pasar: scores.client,    // Ubah dari skor_nomor2
+    skor_ekologi: scores.eco      // Ubah dari skor_nomor3
+};
 
             fetch(WEB_APP_URL, {
                 method: "POST",
