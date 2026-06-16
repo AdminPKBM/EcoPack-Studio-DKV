@@ -109,6 +109,7 @@
 
     <main class="max-w-6xl mx-auto px-4 py-6 md:py-8 w-full flex-grow flex flex-col items-center justify-center gap-6">
 
+        <!-- PANEL MODUL UTAMA -->
         <section id="panel-modul" class="w-full bg-[#0D111A] border border-[#1F293D] rounded-3xl p-5 md:p-8 fade-in relative overflow-hidden">
             <div class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none"></div>
             
@@ -118,6 +119,7 @@
                 <p class="text-slate-400 text-xs mt-1">Pelajari rangkuman materi pokok di bawah ini untuk menguasai kompetensi dasar kejuruan sebelum melaksanakan simulasi proyek.</p>
             </div>
 
+            <!-- Grid 3 Kolom Utama -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-[#121624] border border-[#1F293D] p-5 rounded-2xl flex flex-col justify-between">
                     <div>
@@ -157,6 +159,29 @@
                 </div>
             </div>
 
+            <!-- MATERI TAMBAHAN YANG SUDAH DIINTEGRASIKAN DENGAN BENAR -->
+            <div class="mt-8 pt-6 border-t border-slate-900">
+                <h3 class="text-sm font-extrabold text-indigo-400 mb-4 uppercase tracking-wider">📋 Materi Tambahan: Pengembangan Media Komunikasi Visual Interaktif</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Kolom Bahan Ajar Interaktif -->
+                    <div class="bg-[#121624] border border-[#1F293D] p-5 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-lg mb-4">📱</div>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-wide mb-1">Media Interaktif & Komunikasi Virtual</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Pengembangan simulator berbasis web berorientasi UI/UX interaktif guna melatih nalar kritis desainer dalam memprediksi keselarasan rupa kemasan secara instan.</p>
+                    </div>
+
+                    <!-- Kolom Bahan Ajar Infografis -->
+                    <div class="bg-[#121624] border border-[#1F293D] p-5 rounded-2xl">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-lg mb-4">📊</div>
+                        <h4 class="text-xs font-bold text-white uppercase tracking-wide mb-1">Prinsip Komposisi Infografis</h4>
+                        <p class="text-slate-400 text-xs leading-relaxed">Teknik mereduksi data tekstual yang padat menjadi elemen bagan visual sirkular, berstruktur hierarki, serta memiliki tingkat keterbacaan (legibilitas) tinggi.</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Bagian Footer Navigasi Modul -->
             <div class="mt-8 pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <p class="text-xs text-slate-400 leading-relaxed max-w-xl">
                     💡 <strong>Petunjuk Belajar:</strong> Setelah memahami esensi Wawasan Industri DKV dan Grafika di atas, klik tombol di bawah untuk masuk ke Studio Praktikum Virtual Anda.
@@ -165,38 +190,9 @@
                     Buka Studio Simulator Praktikum ➔
                 </button>
             </div>
-        <!-- 1. Cari section dengan ID panel-modul -->
-<section id="panel-modul" class="hidden space-y-6">
+        </section>
 
-    <!-- ... Konten lama / Grid 3 Kolom materi yang sudah ada ... -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Kolom materi 1, 2, 3 lama Anda -->
-    </div>
-
-
-    <!-- 🟩 PASTE KODE TAMBAHAN ANDA DI SINI (Di bawah materi lama) -->
-    <!-- TAMBAHAN MATERI: BAHAN AJAR INTERAKTIF & INFOGRAFIS -->
-    <div class="mt-6 pt-6 border-t border-slate-900">
-        <h3 class="text-sm font-extrabold text-indigo-400 mb-4 uppercase tracking-wider">📋 Materi Tambahan: Pengembangan Media Komunikasi Visual Interaktif</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <!-- Kolom Bahan Ajar Interaktif -->
-            <div class="bg-[#121624] border border-[#1F293D] p-5 rounded-2xl">
-                ...
-            </div>
-
-            <!-- Kolom Bahan Ajar Infografis -->
-            <div class="bg-[#121624] border border-[#1F293D] p-5 rounded-2xl">
-                ...
-            </div>
-
-        </div>
-    </div>
-    <!-- 🟩 SELESAI PASTE -->
-
-
-</section> <!-- 2. Pastikan berada sebelum tag penutup section ini -->
-
+        <!-- PANEL STUDIO SIMULATOR -->
         <div id="panel-sim" class="hidden w-full flex flex-col items-center justify-center gap-6">
             
             <div id="stage-login" class="w-full bg-[#0D111A] border border-[#1F293D] rounded-3xl p-6 md:p-8 fade-in">
