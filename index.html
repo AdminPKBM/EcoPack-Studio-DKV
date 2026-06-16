@@ -417,19 +417,7 @@
         let studentData = { nama: '', sekolah: '', karir: '' };
         let scores = { design: 50, client: 50, eco: 50 };
         
-        // Pseudo Sound System
-        const Sound = {
-            isActive: true,
-            toggle() {
-                this.isActive = !this.isActive;
-                document.getElementById('sound-toggle-btn').innerText = this.isActive ? "🔊 Audio: Aktif" : "🔇 Audio: Senyap";
-            },
-            play(type) {
-                if(!this.isActive) return;
-                // Logika pemutaran audio browser (Opsional)
-                console.log(`Playing audio: ${type}`);
-            }
-        };
+       
 
         function switchMode(mode) {
             currentMode = mode;
@@ -663,31 +651,7 @@
         }
     };
 
-    // Fungsi placeholder tambahan agar halaman Anda tidak error saat tombol dicoba:
-    function switchMode(mode) {
-        Sound.play('click');
-        if (mode === 'sim') {
-            document.getElementById('panel-modul').classList.add('hidden');
-            document.getElementById('panel-sim').classList.remove('hidden');
-            document.getElementById('metric-bar').classList.remove('hidden');
-        } else {
-            document.getElementById('panel-modul').classList.remove('hidden');
-            document.getElementById('panel-sim').classList.add('hidden');
-            document.getElementById('metric-bar').classList.add('hidden');
-        }
-    }
-
-    function startApp() {
-        Sound.play('click');
-        document.getElementById('stage-login').classList.add('hidden');
-        document.getElementById('stage-career').classList.remove('hidden');
-    }
-
-    function selectCareer(career) {
-        Sound.play('click');
-        alert('Anda memilih karir: ' + career);
-        // Lanjutkan logika simulasi Anda di sini...
-    }
+   
 </script>
     
 </body>
