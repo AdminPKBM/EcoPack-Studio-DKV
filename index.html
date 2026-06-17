@@ -36,6 +36,15 @@
             border-color: rgba(168, 85, 247, 0.4) !important;
         }
         
+        /* Menyembunyikan scrollbar bawaan agar visual navigasi rapi */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
         /* Desain Khusus untuk Cetak Lembar Kerja / LKPD */
         @media print {
             body { background: white !important; color: black !important; font-size: 11px; }
@@ -56,25 +65,25 @@
 
     <!-- HEADER / NAVIGATION -->
     <header class="bg-gray-950/80 border-b border-gray-800/60 sticky top-0 z-50 backdrop-blur-md print-hidden">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-                <div class="h-11 w-11 rounded-2xl bg-gradient-to-tr from-emerald-500 via-indigo-500 to-purple-600 flex items-center justify-center font-black text-white text-sm shadow-lg shadow-indigo-500/20 tracking-wider">DKV</div>
+        <div class="max-w-6xl mx-auto px-4 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+            <div class="flex items-center gap-3 w-full md:w-auto justify-start">
+                <div class="h-10 w-10 md:h-11 md:w-11 rounded-xl md:rounded-2xl bg-gradient-to-tr from-emerald-500 via-indigo-500 to-purple-600 flex items-center justify-center font-black text-white text-xs md:text-sm shadow-lg shadow-indigo-500/20 tracking-wider">DKV</div>
                 <div>
-                    <h1 class="text-[10px] font-bold uppercase tracking-widest text-indigo-400 bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-900/40 inline-block">Fase E: Dasar-Dasar DKV</h1>
-                    <p class="text-base font-extrabold text-white mt-0.5 tracking-tight">Bahan Ajar Interaktif & Simulator LKPD</p>
+                    <h1 class="text-[9px] font-bold uppercase tracking-widest text-indigo-400 bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-900/40 inline-block">Fase E: Dasar-Dasar DKV</h1>
+                    <p class="text-sm md:text-base font-extrabold text-white tracking-tight">Bahan Ajar Interaktif & Simulator LKPD</p>
                 </div>
             </div>
             
-            <div class="flex flex-wrap items-center gap-3 tab-nav">
-                <button id="sound-toggle-btn" onclick="Sound.toggle()" class="bg-gray-900/90 border border-gray-800 text-slate-300 font-bold px-3 py-2 rounded-xl text-xs transition-all hover:bg-gray-800 flex items-center gap-2 active:scale-95">
-                    <span id="sound-icon">🔊</span> Audio: Aktif
+            <div class="flex flex-row items-center justify-between md:justify-end gap-3 w-full md:w-auto tab-nav border-t border-gray-900 md:border-t-0 pt-2.5 md:pt-0">
+                <button id="sound-toggle-btn" onclick="Sound.toggle()" class="bg-gray-900/90 border border-gray-800 text-slate-300 font-bold px-3 py-2.5 rounded-xl text-[10px] md:text-xs transition-all hover:bg-gray-800 flex items-center gap-2 active:scale-95 min-h-[40px]">
+                    <span id="sound-icon">🔊</span> <span class="hidden sm:inline">Audio:</span> Aktif
                 </button>
-                <div class="flex bg-gray-900/90 p-1 rounded-2xl border border-gray-800/80 text-xs shadow-inner">
-                    <button id="tab-modul" onclick="switchMode('modul')" class="px-4 py-2 rounded-xl font-bold transition-all duration-300 text-indigo-300 bg-gray-950 border border-gray-800/80 shadow-md">
-                        📖 1. E-Modul & Aktivitas
+                <div class="flex bg-gray-900/90 p-1 rounded-xl border border-gray-800/80 text-[10px] md:text-xs shadow-inner">
+                    <button id="tab-modul" onclick="switchMode('modul')" class="px-3 md:px-4 py-2 rounded-lg font-bold transition-all duration-300 text-indigo-300 bg-gray-950 border border-gray-800/80 shadow-md">
+                        📖 E-Modul
                     </button>
-                    <button id="tab-sim" onclick="switchMode('sim')" class="px-4 py-2 rounded-xl font-bold transition-all duration-300 text-slate-400 hover:text-white">
-                        💻 2. Studio Simulator Proyek
+                    <button id="tab-sim" onclick="switchMode('sim')" class="px-3 md:px-4 py-2 rounded-lg font-bold transition-all duration-300 text-slate-400 hover:text-white">
+                        💻 Simulator
                     </button>
                 </div>
             </div>
@@ -83,45 +92,45 @@
 
     <!-- METRICS & HUD -->
     <div id="metric-bar" class="bg-gray-950/40 border-b border-gray-900/40 backdrop-blur-sm print-hidden transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2 text-[10px] font-bold text-slate-400 overflow-x-auto w-full sm:w-auto whitespace-nowrap py-1">
-                <span id="step-1-lbl" class="bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-3 py-1.5 rounded-lg transition-all">1. Registrasi</span>
+        <div class="max-w-6xl mx-auto px-4 py-2.5 md:py-3 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+            <div class="flex items-center gap-1 text-[9px] font-bold text-slate-400 overflow-x-auto w-full md:w-auto whitespace-nowrap py-1 no-scrollbar">
+                <span id="step-1-lbl" class="bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2 py-1 rounded-md transition-all">1. Registrasi</span>
                 <span class="text-gray-700 font-normal">➔</span>
-                <span id="step-2-lbl" class="px-3 py-1.5 rounded-lg text-gray-600 border border-transparent transition-all">2. Spesialisasi</span>
+                <span id="step-2-lbl" class="px-2 py-1 rounded-md text-gray-600 border border-transparent transition-all">2. Spesialisasi</span>
                 <span class="text-gray-700 font-normal">➔</span>
-                <span id="step-3-lbl" class="px-3 py-1.5 rounded-lg text-gray-600 border border-transparent transition-all">3. Design Thinking</span>
+                <span id="step-3-lbl" class="px-2 py-1 rounded-md text-gray-600 border border-transparent transition-all">3. Design Thinking</span>
                 <span class="text-gray-700 font-normal">➔</span>
-                <span id="step-4-lbl" class="px-3 py-1.5 rounded-lg text-gray-600 border border-transparent transition-all">4. Konfigurasi & Uji</span>
+                <span id="step-4-lbl" class="px-2 py-1 rounded-md text-gray-600 border border-transparent transition-all">4. Konfigurasi</span>
                 <span class="text-gray-700 font-normal">➔</span>
-                <span id="step-5-lbl" class="px-3 py-1.5 rounded-lg text-gray-600 border border-transparent transition-all">5. LKPD Akhir</span>
+                <span id="step-5-lbl" class="px-2 py-1 rounded-md text-gray-600 border border-transparent transition-all">5. LKPD</span>
             </div>
             
-            <div class="grid grid-cols-3 gap-3 w-full sm:w-auto">
-                <div class="bg-gray-900/60 p-2 rounded-xl border border-gray-800/80 flex flex-col min-w-[90px] md:w-32 shadow-sm">
-                    <span class="text-[8px] text-blue-400 font-bold uppercase tracking-wider">Rupa Nirmana</span>
-                    <div class="flex items-center justify-between w-full mt-1">
-                        <div class="w-full bg-gray-800 rounded-full h-1 mr-2 overflow-hidden">
+            <div class="grid grid-cols-3 gap-2 w-full md:w-auto">
+                <div class="bg-gray-900/60 p-1.5 md:p-2 rounded-xl border border-gray-800/80 flex flex-col min-w-[80px] md:w-32 shadow-sm">
+                    <span class="text-[7px] md:text-[8px] text-blue-400 font-bold uppercase tracking-wider">Rupa Nirmana</span>
+                    <div class="flex items-center justify-between w-full mt-0.5 md:mt-1">
+                        <div class="w-full bg-gray-800 rounded-full h-1 mr-1.5 overflow-hidden">
                             <div id="bar-design" class="bg-gradient-to-r from-blue-500 to-indigo-500 h-1 rounded-full transition-all duration-500" style="width: 50%;"></div>
                         </div>
-                        <span id="score-design-val" class="text-[10px] font-black text-blue-400 font-mono">50</span>
+                        <span id="score-design-val" class="text-[9px] md:text-[10px] font-black text-blue-400 font-mono">50</span>
                     </div>
                 </div>
-                <div class="bg-gray-900/60 p-2 rounded-xl border border-gray-800/80 flex flex-col min-w-[90px] md:w-32 shadow-sm">
-                    <span class="text-[8px] text-amber-400 font-bold uppercase tracking-wider">Komunikasi Pasar</span>
-                    <div class="flex items-center justify-between w-full mt-1">
-                        <div class="w-full bg-gray-800 rounded-full h-1 mr-2 overflow-hidden">
+                <div class="bg-gray-900/60 p-1.5 md:p-2 rounded-xl border border-gray-800/80 flex flex-col min-w-[80px] md:w-32 shadow-sm">
+                    <span class="text-[7px] md:text-[8px] text-amber-400 font-bold uppercase tracking-wider">Komunikasi Pasar</span>
+                    <div class="flex items-center justify-between w-full mt-0.5 md:mt-1">
+                        <div class="w-full bg-gray-800 rounded-full h-1 mr-1.5 overflow-hidden">
                             <div id="bar-client" class="bg-gradient-to-r from-amber-500 to-orange-500 h-1 rounded-full transition-all duration-500" style="width: 50%;"></div>
                         </div>
-                        <span id="score-client-val" class="text-[10px] font-black text-amber-400 font-mono">50</span>
+                        <span id="score-client-val" class="text-[9px] md:text-[10px] font-black text-amber-400 font-mono">50</span>
                     </div>
                 </div>
-                <div class="bg-gray-900/60 p-2 rounded-xl border border-gray-800/80 flex flex-col min-w-[90px] md:w-32 shadow-sm">
-                    <span class="text-[8px] text-emerald-400 font-bold uppercase tracking-wider">Siklus Hijau</span>
-                    <div class="flex items-center justify-between w-full mt-1">
-                        <div class="w-full bg-gray-800 rounded-full h-1 mr-2 overflow-hidden">
+                <div class="bg-gray-900/60 p-1.5 md:p-2 rounded-xl border border-gray-800/80 flex flex-col min-w-[80px] md:w-32 shadow-sm">
+                    <span class="text-[7px] md:text-[8px] text-emerald-400 font-bold uppercase tracking-wider">Siklus Hijau</span>
+                    <div class="flex items-center justify-between w-full mt-0.5 md:mt-1">
+                        <div class="w-full bg-gray-800 rounded-full h-1 mr-1.5 overflow-hidden">
                             <div id="bar-eco" class="bg-gradient-to-r from-emerald-500 to-teal-500 h-1 rounded-full transition-all duration-500" style="width: 50%;"></div>
                         </div>
-                        <span id="score-eco-val" class="text-[10px] font-black text-emerald-400 font-mono">50</span>
+                        <span id="score-eco-val" class="text-[9px] md:text-[10px] font-black text-emerald-400 font-mono">50</span>
                     </div>
                 </div>
             </div>
@@ -129,145 +138,148 @@
     </div>
 
     <!-- MAIN CONTAINER -->
-    <main class="max-w-6xl mx-auto px-4 py-6 md:py-8 w-full flex-grow flex flex-col items-center justify-center gap-8">
+    <main class="max-w-6xl mx-auto px-4 py-4 md:py-6 w-full flex-grow flex flex-col items-center justify-center gap-6 md:gap-8">
 
         <!-- ==================== PANEL 1: E-MODUL TEORI ==================== -->
-        <section id="panel-modul" class="w-full glass-panel border border-white/5 rounded-3xl p-5 md:p-8 fade-in relative overflow-hidden shadow-2xl">
+        <section id="panel-modul" class="w-full glass-panel border border-white/5 rounded-2xl md:rounded-3xl p-4 md:p-8 fade-in relative overflow-hidden shadow-2xl">
             <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"></div>
             
             <!-- IDENTITAS BAHAN AJAR -->
-            <div class="mb-6 p-4 rounded-2xl bg-gray-950/80 border border-gray-800/50 flex flex-wrap justify-between items-center gap-4 text-xs">
+            <div class="mb-5 p-3 md:p-4 rounded-xl md:rounded-2xl bg-gray-950/80 border border-gray-800/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-[11px] md:text-xs">
                 <div>
-                    <span class="bg-indigo-950 text-indigo-300 border border-indigo-900/50 px-2.5 py-1 rounded font-bold uppercase text-[9px]">Identitas</span>
-                    <p class="text-white font-bold mt-1.5">Mata Pelajaran: Dasar-Dasar DKV</p>
+                    <span class="bg-indigo-950 text-indigo-300 border border-indigo-900/50 px-2 py-0.5 rounded font-bold uppercase text-[8px] md:text-[9px]">Identitas</span>
+                    <p class="text-white font-bold mt-1">Mata Pelajaran: Dasar-Dasar DKV</p>
                     <p class="text-slate-400 mt-0.5">Program Keahlian: Desain Komunikasi Visual (Fase E)</p>
                 </div>
-                <div>
+                <div class="border-t border-gray-900 sm:border-t-0 pt-2 sm:pt-0 w-full sm:w-auto">
                     <p class="text-slate-400">Satuan Pendidikan: <strong class="text-white">SMK</strong></p>
                     <p class="text-slate-400 mt-0.5">Alokasi Waktu: <strong class="text-white">12 JP</strong></p>
                 </div>
             </div>
 
             <!-- DESKRIPSI & CAPAIAN -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-5">
                 <div class="p-4 rounded-xl bg-gray-900/40 border border-gray-800">
-                    <h3 class="text-sm font-bold text-white mb-2">💡 Deskripsi Umum</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed">Desain Komunikasi Visual (DKV) memanfaatkan unsur visual untuk menyampaikan pesan kepada masyarakat [1]. Perkembangan teknologi memperluas profesi DKV ke ranah digital, industri kreatif, teknologi informasi, hingga media interaktif.</p>
+                    <h3 class="text-xs md:text-sm font-bold text-white mb-1.5">💡 Deskripsi Umum</h3>
+                    <p class="text-[11px] md:text-xs text-slate-300 leading-relaxed">Desain Komunikasi Visual (DKV) memanfaatkan unsur visual untuk menyampaikan pesan kepada masyarakat [1]. Perkembangan teknologi memperluas profesi DKV ke ranah digital, industri kreatif, teknologi informasi, hingga media interaktif.</p>
                 </div>
                 <div class="p-4 rounded-xl bg-gray-900/40 border border-gray-800">
-                    <h3 class="text-sm font-bold text-white mb-2">🎯 Capaian Pembelajaran</h3>
-                    <p class="text-xs text-slate-300 leading-relaxed">Peserta didik mampu memahami wawasan dunia kerja bidang DKV dan grafika, perkembangan teknologi, penerapan desain berkelanjutan, serta konsep dasar desain sebagai bagian dari ekonomi kreatif.</p>
+                    <h3 class="text-xs md:text-sm font-bold text-white mb-1.5">🎯 Capaian Pembelajaran</h3>
+                    <p class="text-[11px] md:text-xs text-slate-300 leading-relaxed">Peserta didik mampu memahami wawasan dunia kerja bidang DKV dan grafika, perkembangan teknologi, penerapan desain berkelanjutan, serta konsep dasar desain sebagai bagian dari ekonomi kreatif.</p>
                 </div>
             </div>
 
             <!-- TABS MATERI -->
-            <div class="mb-6 border-b border-gray-800">
-                <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-                    <button id="btn-mat-1" onclick="switchMateri(1)" class="px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap bg-indigo-600 text-white">Materi 1: Dunia Kerja & Profesi</button>
-                    <button id="btn-mat-2" onclick="switchMateri(2)" class="px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap bg-gray-900 text-slate-400 hover:text-white">Materi 2: Perkembangan Teknologi</button>
-                    <button id="btn-mat-3" onclick="switchMateri(3)" class="px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap bg-gray-900 text-slate-400 hover:text-white">Materi 3: Dasar Desain Visual</button>
-                    <button id="btn-mat-4" onclick="switchMateri(4)" class="px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap bg-gray-900 text-slate-400 hover:text-white">Materi 4: Design Thinking</button>
+            <div class="mb-5 border-b border-gray-900 relative">
+                <!-- Gradien Penunjuk Geser di Mobile -->
+                <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#030712] to-transparent pointer-events-none md:hidden"></div>
+                
+                <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none no-scrollbar snap-x">
+                    <button id="btn-mat-1" onclick="switchMateri(1)" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap snap-start bg-indigo-600 text-white">Materi 1: Karir & Profesi</button>
+                    <button id="btn-mat-2" onclick="switchMateri(2)" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap snap-start bg-gray-900 text-slate-400 hover:text-white">Materi 2: Teknologi & 3R</button>
+                    <button id="btn-mat-3" onclick="switchMateri(3)" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap snap-start bg-gray-900 text-slate-400 hover:text-white">Materi 3: Nirmana Visual</button>
+                    <button id="btn-mat-4" onclick="switchMateri(4)" class="px-3.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap snap-start bg-gray-900 text-slate-400 hover:text-white">Materi 4: Design Thinking</button>
                 </div>
             </div>
 
             <!-- BOX KONTEN MATERI -->
-            <div id="materi-content-box" class="space-y-6">
+            <div id="materi-content-box" class="space-y-5">
                 
                 <!-- MATERI 1 CONTENT -->
-                <div id="materi-sec-1" class="space-y-6">
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-2">1. Pengertian Desain Komunikasi Visual (DKV)</h3>
+                <div id="materi-sec-1" class="space-y-5">
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-1.5">1. Pengertian Desain Komunikasi Visual (DKV)</h3>
                         <p class="text-xs text-slate-300 leading-relaxed">Desain Komunikasi Visual adalah bidang ilmu yang mempelajari penyampaian pesan menggunakan media visual seperti gambar, warna, teks, simbol, dan teknologi digital. Tujuan utamanya adalah untuk: <strong class="text-indigo-400">Memberikan informasi, menarik perhatian, membangun identitas,</strong> dan <strong class="text-indigo-400">mempengaruhi perilaku audiens</strong>.</p>
                     </div>
 
                     <!-- VISUAL SUBSEKTOR EKRAF MAP (SVG ILLUSTRATIONS) -->
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-4">2. DKV dalam Ekonomi Kreatif Indonesia</h3>
-                        <p class="text-xs text-slate-400 mb-4">Berikut adalah 4 subsektor utama DKV & Grafika yang memegang peranan krusial dalam pertumbuhan ekonomi nasional:</p>
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-3">2. DKV dalam Ekonomi Kreatif Indonesia</h3>
+                        <p class="text-xs text-slate-400 mb-3">Berikut adalah 4 subsektor utama DKV & Grafika yang memegang peranan krusial dalam pertumbuhan ekonomi nasional:</p>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                             <!-- Branding Card with Dynamic SVG -->
-                            <div class="p-4 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
-                                <svg class="w-12 h-12 mb-3 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <div class="p-3.5 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
+                                <svg class="w-10 h-10 mb-2.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                                 </svg>
                                 <h4 class="text-xs font-bold text-indigo-300 uppercase tracking-wider">A. Branding</h4>
-                                <p class="text-[11px] text-slate-400 mt-1">Merancang identitas unik perusahaan: Logo, kemasan, & panduan merek.</p>
+                                <p class="text-[10px] md:text-[11px] text-slate-400 mt-1">Logo, kemasan, & panduan merek korporasi.</p>
                             </div>
                             <!-- Periklanan Card -->
-                            <div class="p-4 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
-                                <svg class="w-12 h-12 mb-3 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <div class="p-3.5 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
+                                <svg class="w-10 h-10 mb-2.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M11 5h1a1.5 1.5 0 0 1 0 3h-1m1 3h1a1.5 1.5 0 0 1 0 3h-1m-4 3H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M17 17v2a1 1 0 0 1-1 1h-3M21 7v10M17 12h4"/>
                                 </svg>
                                 <h4 class="text-xs font-bold text-indigo-300 uppercase tracking-wider">B. Periklanan</h4>
-                                <p class="text-[11px] text-slate-400 mt-1">Konseptor promosi kreatif: Baliho, poster, & aset media sosial.</p>
+                                <p class="text-[10px] md:text-[11px] text-slate-400 mt-1">Kreator promosi: Spanduk, poster, & sosial media.</p>
                             </div>
                             <!-- Multimedia Card -->
-                            <div class="p-4 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
-                                <svg class="w-12 h-12 mb-3 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                            <div class="p-3.5 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
+                                <svg class="w-10 h-10 mb-2.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="2" ry="2"/>
                                     <path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/>
                                 </svg>
                                 <h4 class="text-xs font-bold text-indigo-300 uppercase tracking-wider">C. Multimedia</h4>
-                                <p class="text-[11px] text-slate-400 mt-1">Produksi aset digital dinamis: Animasi, sinematografi, & motion graphics.</p>
+                                <p class="text-[10px] md:text-[11px] text-slate-400 mt-1">Animasi, film, videografi, & motion graphics.</p>
                             </div>
                             <!-- Percetakan Card -->
-                            <div class="p-4 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
-                                <svg class="w-12 h-12 mb-3 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <div class="p-3.5 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center text-center">
+                                <svg class="w-10 h-10 mb-2.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
                                     <rect x="6" y="14" width="12" height="8"/>
                                 </svg>
                                 <h4 class="text-xs font-bold text-indigo-300 uppercase tracking-wider">D. Percetakan</h4>
-                                <p class="text-[11px] text-slate-400 mt-1">Rekayasa produksi grafika fisik: Buku, majalah, & struktur wadah kemasan.</p>
+                                <p class="text-[10px] md:text-[11px] text-slate-400 mt-1">Produksi grafika fisik: Buku, majalah, & kemasan.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-3">3. Profesi Bidang DKV & Grafika</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                            <div class="p-3 bg-gray-900/40 rounded-xl border border-gray-800/60 flex gap-3 items-start">
-                                <span class="text-2xl">🎨</span>
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-2.5">3. Profesi Bidang DKV & Grafika</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800/60 flex gap-3 items-start">
+                                <span class="text-xl md:text-2xl">🎨</span>
                                 <div>
-                                    <strong class="text-white block mb-1">Graphic Designer</strong>
-                                    <span class="text-slate-400 leading-relaxed">Menyusun konsep estetika rupa untuk mengomunikasikan pesan merek secara visual.</span>
+                                    <strong class="text-white block mb-0.5">Graphic Designer</strong>
+                                    <span class="text-slate-400 leading-relaxed text-[11px]">Menyusun konsep estetika rupa untuk mengomunikasikan pesan merek secara visual.</span>
                                 </div>
                             </div>
-                            <div class="p-3 bg-gray-900/40 rounded-xl border border-gray-800/60 flex gap-3 items-start">
-                                <span class="text-2xl">📱</span>
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800/60 flex gap-3 items-start">
+                                <span class="text-xl md:text-2xl">📱</span>
                                 <div>
-                                    <strong class="text-white block mb-1">UI/UX Designer</strong>
-                                    <span class="text-slate-400 leading-relaxed">Merancang kerangka visual interaktif (wireframe) dan alur navigasi aplikasi digital.</span>
+                                    <strong class="text-white block mb-0.5">UI/UX Designer</strong>
+                                    <span class="text-slate-400 leading-relaxed text-[11px]">Merancang tampilan antarmuka (wireframe) dan alur navigasi aplikasi digital.</span>
                                 </div>
                             </div>
-                            <div class="p-3 bg-gray-900/40 rounded-xl border border-gray-800/60 flex gap-3 items-start">
-                                <span class="text-2xl">🏃‍♂️</span>
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800/60 flex gap-3 items-start">
+                                <span class="text-xl md:text-2xl">🏃‍♂️</span>
                                 <div>
-                                    <strong class="text-white block mb-1">Animator & Motion Designer</strong>
-                                    <span class="text-slate-400 leading-relaxed">Menghidupkan ilustrasi 2D/3D untuk kebutuhan media penyiaran atau digital.</span>
+                                    <strong class="text-white block mb-0.5">Animator & Motion</strong>
+                                    <span class="text-slate-400 leading-relaxed text-[11px]">Menghidupkan ilustrasi 2D/3D untuk kebutuhan media penyiaran atau digital.</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- AKTIVITAS 1: INTERAKTIF MATCHING -->
-                    <div class="p-5 bg-indigo-950/20 border border-indigo-900/40 rounded-2xl">
-                        <span class="bg-indigo-900/80 text-indigo-200 border border-indigo-700 text-[9px] font-bold px-2 py-1 rounded">Aktivitas 1: Identifikasi Profesi</span>
-                        <h4 class="text-sm font-bold text-white mt-2 mb-3">Tarik atau Cocokkan Profesi dengan Deskripsi Tugas yang Sesuai:</h4>
+                    <div class="p-4 md:p-5 bg-indigo-950/20 border border-indigo-900/40 rounded-xl md:rounded-2xl">
+                        <span class="bg-indigo-900/80 text-indigo-200 border border-indigo-700 text-[8px] md:text-[9px] font-bold px-2 py-1 rounded">Aktivitas 1: Identifikasi Profesi</span>
+                        <h4 class="text-xs md:text-sm font-bold text-white mt-1.5 mb-2.5">Cocokkan Profesi dengan Deskripsi Tugas yang Sesuai:</h4>
                         
-                        <div class="space-y-4">
-                            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 p-3 bg-gray-950 rounded-xl border border-gray-800 transition-all" id="act-1-row-1">
+                        <div class="space-y-3">
+                            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 p-3 bg-gray-950 rounded-xl border border-gray-800 transition-all" id="act-1-row-1">
                                 <span class="text-xs font-bold text-indigo-400">1. UI/UX Designer</span>
-                                <select id="act-1-q1" onchange="Sound.play('click')" class="bg-gray-900 text-xs text-slate-300 rounded-lg p-2 border border-gray-800 focus:outline-none focus:border-indigo-500 cursor-pointer">
+                                <select id="act-1-q1" onchange="Sound.play('click')" class="bg-gray-900 text-xs text-slate-300 rounded-lg p-2.5 border border-gray-800 focus:outline-none focus:border-indigo-500 cursor-pointer min-h-[44px] w-full sm:w-auto">
                                     <option value="">-- Pilih Tugas Utama --</option>
                                     <option value="A">Membuat gambar bergerak atau animasi digital</option>
                                     <option value="B">Merancang tampilan antarmuka & alur pengalaman pengguna aplikasi</option>
                                     <option value="C">Membuat desain grafis komunikasi visual statis</option>
                                 </select>
                             </div>
-                            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 p-3 bg-gray-950 rounded-xl border border-gray-800 transition-all" id="act-1-row-2">
+                            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 p-3 bg-gray-950 rounded-xl border border-gray-800 transition-all" id="act-1-row-2">
                                 <span class="text-xs font-bold text-indigo-400">2. Animator</span>
-                                <select id="act-1-q2" onchange="Sound.play('click')" class="bg-gray-900 text-xs text-slate-300 rounded-lg p-2 border border-gray-800 focus:outline-none focus:border-indigo-500 cursor-pointer">
+                                <select id="act-1-q2" onchange="Sound.play('click')" class="bg-gray-900 text-xs text-slate-300 rounded-lg p-2.5 border border-gray-800 focus:outline-none focus:border-indigo-500 cursor-pointer min-h-[44px] w-full sm:w-auto">
                                     <option value="">-- Pilih Tugas Utama --</option>
                                     <option value="A">Membuat gambar bergerak atau animasi digital</option>
                                     <option value="B">Merancang tampilan antarmuka & alur pengalaman pengguna aplikasi</option>
@@ -275,105 +287,105 @@
                                 </select>
                             </div>
                         </div>
-                        <button onclick="checkAktivitas1()" class="mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-xl text-xs transition-all active:scale-95">
+                        <button onclick="checkAktivitas1()" class="mt-3.5 w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 px-5 rounded-xl text-xs transition-all active:scale-95 min-h-[44px]">
                             Periksa Jawaban Aktivitas 1
                         </button>
                     </div>
                 </div>
 
                 <!-- MATERI 2 CONTENT -->
-                <div id="materi-sec-2" class="hidden space-y-6">
+                <div id="materi-sec-2" class="hidden space-y-5">
                     <!-- TIMELINE TEKNOLOGI INTERAKTIF -->
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-4">1. Perkembangan Teknologi Desain & Cetak</h3>
-                        <p class="text-xs text-slate-400 mb-4">Klik pada setiap era di bawah untuk melihat perubahan perkakas gambar & visual pendukungnya:</p>
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-3">1. Perkembangan Teknologi Desain & Cetak</h3>
+                        <p class="text-xs text-slate-400 mb-3">Tekan pada setiap era di bawah untuk melihat evolusi perkakas gambar & visualnya:</p>
                         
-                        <div class="grid grid-cols-3 gap-2 mb-4">
-                            <button onclick="toggleTimelineEra('manual')" id="btn-era-manual" class="p-3 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-xs font-bold transition-all">Manual (Lama)</button>
-                            <button onclick="toggleTimelineEra('digital')" id="btn-era-digital" class="p-3 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-xs font-bold transition-all">Digital (90s-00s)</button>
-                            <button onclick="toggleTimelineEra('modern')" id="btn-era-modern" class="p-3 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-xs font-bold transition-all">Modern (Masa Kini)</button>
+                        <div class="grid grid-cols-3 gap-2 mb-3.5">
+                            <button onclick="toggleTimelineEra('manual')" id="btn-era-manual" class="p-2 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]">Manual</button>
+                            <button onclick="toggleTimelineEra('digital')" id="btn-era-digital" class="p-2 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]">Digital</button>
+                            <button onclick="toggleTimelineEra('modern')" id="btn-era-modern" class="p-2 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]">Modern</button>
                         </div>
 
                         <!-- Dynamic Timeline Container -->
-                        <div id="timeline-detail-box" class="p-4 bg-gray-900/60 border border-gray-800 rounded-xl flex flex-col md:flex-row gap-5 items-center">
+                        <div id="timeline-detail-box" class="p-3.5 bg-gray-900/60 border border-gray-800 rounded-xl flex flex-col sm:flex-row gap-4 items-center">
                             <!-- SVG Illustration dynamic based on selection -->
-                            <div class="w-24 h-24 flex items-center justify-center bg-gray-950 rounded-xl border border-gray-800" id="timeline-svg-holder">
-                                <svg class="w-16 h-16 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center bg-gray-950 rounded-xl border border-gray-800 flex-shrink-0" id="timeline-svg-holder">
+                                <svg class="w-12 h-12 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-1.5M14 17l-1.5-1.5M11 20l-4-4 2.5-2.5 4 4L11 20zM3 13l4.5-4.5M11 2L2 11l5 5 9-9-5-5z"/>
                                 </svg>
                             </div>
-                            <div>
-                                <h4 class="text-sm font-bold text-white uppercase" id="timeline-era-title">Era Cetak Manual</h4>
-                                <p class="text-xs text-slate-300 mt-2 leading-relaxed" id="timeline-era-desc">Karya seni visual murni menggunakan pensil, kuas, pewarna fisik, dan pelat tembaga/kayu. Presisi sangat bertumpu pada keahlian motorik tangan seniman.</p>
+                            <div class="text-center sm:text-left">
+                                <h4 class="text-xs md:text-sm font-bold text-white uppercase" id="timeline-era-title">Era Cetak Manual</h4>
+                                <p class="text-[11px] text-slate-300 mt-1 leading-relaxed" id="timeline-era-desc">Karya seni visual murni menggunakan pensil, kuas, pewarna fisik, dan pelat tembaga/kayu. Presisi sangat bertumpu pada keahlian motorik tangan seniman.</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- LCA INTERACTIVE FLOW MAP -->
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-3">2. Life Cycle Assessment (LCA) Alur Sirkular</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed mb-4">Arahkan kursor Anda (*hover*) pada tahapan-tahapan di bawah ini untuk melihat keterkaitan sirkularitasnya:</p>
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-2.5">2. Life Cycle Assessment (LCA) Alur Sirkular</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-3">Ketuk atau arahkan kursor Anda (*hover*) pada tahapan-tahapan di bawah ini:</p>
                         
-                        <div class="grid grid-cols-2 md:grid-cols-6 gap-2 text-center text-[10px]">
-                            <div class="p-3 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.03] cursor-help">1. Perencanaan</div>
-                            <div class="p-3 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.03] cursor-help">2. Desain</div>
-                            <div class="p-3 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.03] cursor-help">3. Produksi</div>
-                            <div class="p-3 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.03] cursor-help">4. Distribusi</div>
-                            <div class="p-3 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.03] cursor-help">5. Penggunaan</div>
-                            <div class="p-3 bg-emerald-950/40 text-emerald-300 rounded-lg border border-emerald-900/40 font-bold transition-all hover:border-emerald-500 hover:scale-[1.03] cursor-help">6. Pengelolaan Akhir</div>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-[9px] md:text-[10px]">
+                            <div class="p-2.5 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.02] cursor-help">1. Perencanaan</div>
+                            <div class="p-2.5 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.02] cursor-help">2. Desain</div>
+                            <div class="p-2.5 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.02] cursor-help">3. Produksi</div>
+                            <div class="p-2.5 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.02] cursor-help">4. Distribusi</div>
+                            <div class="p-2.5 bg-gray-900 rounded-lg border border-gray-800 font-bold transition-all hover:border-indigo-500 hover:text-indigo-300 hover:scale-[1.02] cursor-help">5. Penggunaan</div>
+                            <div class="p-2.5 bg-emerald-950/40 text-emerald-300 rounded-lg border border-emerald-900/40 font-bold transition-all hover:border-emerald-500 hover:scale-[1.02] cursor-help">6. Pengelolaan Akhir</div>
                         </div>
                     </div>
 
                     <!-- MINIGAME AKTIVITAS 2: GAME KLASIFIKASI 3R -->
-                    <div class="p-5 bg-indigo-950/20 border border-indigo-900/40 rounded-2xl">
-                        <span class="bg-indigo-900/80 text-indigo-200 border border-indigo-700 text-[9px] font-bold px-2 py-1 rounded">Aktivitas 2: Game Klasifikasi 3R</span>
-                        <h4 class="text-sm font-bold text-white mt-2 mb-2">Tantangan Logika Sirkular:</h4>
-                        <p class="text-xs text-slate-400 mb-4">Klasifikasikan objek limbah atau aktivitas di bawah ke dalam konsep 3R yang tepat dengan mengkliknya!</p>
+                    <div class="p-4 md:p-5 bg-indigo-950/20 border border-indigo-900/40 rounded-xl md:rounded-2xl">
+                        <span class="bg-indigo-900/80 text-indigo-200 border border-indigo-700 text-[8px] md:text-[9px] font-bold px-2 py-1 rounded">Aktivitas 2: Game Klasifikasi 3R</span>
+                        <h4 class="text-xs md:text-sm font-bold text-white mt-1.5 mb-1.5">Tantangan Logika Sirkular:</h4>
+                        <p class="text-xs text-slate-400 mb-3.5">Klasifikasikan aktivitas di bawah ke dalam konsep 3R yang tepat dengan menekannya!</p>
                         
-                        <div class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-4">
+                        <div class="bg-gray-950 p-3.5 rounded-xl border border-gray-800 space-y-3">
                             <div class="text-center p-3 bg-gray-900 rounded-xl border border-gray-800" id="game-item-display">
-                                <span class="text-xs block text-gray-500 font-bold uppercase tracking-wider">Objek Limbah Aktif:</span>
-                                <span class="text-sm font-extrabold text-white mt-1 block" id="game-active-text">"Botol kaca wadah selai digunakan kembali menjadi tempat lilin dekoratif hiasan meja."</span>
+                                <span class="text-[9px] block text-gray-500 font-bold uppercase tracking-wider">Objek Aktif:</span>
+                                <span class="text-xs font-extrabold text-white mt-1 block leading-relaxed" id="game-active-text">"Botol kaca wadah selai digunakan kembali menjadi tempat lilin dekoratif hiasan meja."</span>
                             </div>
-                            <div class="grid grid-cols-3 gap-3">
-                                <button onclick="selectGame3R('Reduce')" class="p-3 bg-gray-900 hover:bg-indigo-950 border border-gray-800 hover:border-indigo-500 text-xs text-slate-300 font-bold rounded-xl transition-all">REDUCE</button>
-                                <button onclick="selectGame3R('Reuse')" class="p-3 bg-gray-900 hover:bg-indigo-950 border border-gray-800 hover:border-indigo-500 text-xs text-slate-300 font-bold rounded-xl transition-all">REUSE</button>
-                                <button onclick="selectGame3R('Recycle')" class="p-3 bg-gray-900 hover:bg-indigo-950 border border-gray-800 hover:border-indigo-500 text-xs text-slate-300 font-bold rounded-xl transition-all">RECYCLE</button>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="selectGame3R('Reduce')" class="p-2.5 bg-gray-900 hover:bg-indigo-950 border border-gray-800 hover:border-indigo-500 text-[10px] md:text-xs text-slate-300 font-bold rounded-xl transition-all min-h-[44px]">REDUCE</button>
+                                <button onclick="selectGame3R('Reuse')" class="p-2.5 bg-gray-900 hover:bg-indigo-950 border border-gray-800 hover:border-indigo-500 text-[10px] md:text-xs text-slate-300 font-bold rounded-xl transition-all min-h-[44px]">REUSE</button>
+                                <button onclick="selectGame3R('Recycle')" class="p-2.5 bg-gray-900 hover:bg-indigo-950 border border-gray-800 hover:border-indigo-500 text-[10px] md:text-xs text-slate-300 font-bold rounded-xl transition-all min-h-[44px]">RECYCLE</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- MATERI 3 CONTENT -->
-                <div id="materi-sec-3" class="hidden space-y-6">
+                <div id="materi-sec-3" class="hidden space-y-5">
                     <!-- LIVE INTERACTIVE UNSUR PLAYGROUND -->
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-2">1. Playground Interaktif Unsur Desain Visual</h3>
-                        <p class="text-xs text-slate-400 mb-4">Gunakan penggeser (*slider*) di bawah ini untuk melihat bagaimana unsur desain (Garis, Warna, dan Ruang) bekerja secara langsung:</p>
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-1.5">1. Playground Interaktif Unsur Desain Visual</h3>
+                        <p class="text-xs text-slate-400 mb-3.5">Gunakan penggeser (*slider*) di bawah ini untuk melihat bagaimana unsur desain bekerja secara langsung:</p>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
-                            <div class="md:col-span-5 space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                            <div class="md:col-span-5 space-y-3.5">
                                 <div class="space-y-1">
-                                    <label class="block text-[10px] uppercase font-bold text-gray-400">Ketebalan Garis (Stroke Weight):</label>
-                                    <input type="range" id="slider-stroke" min="1" max="15" value="4" oninput="updatePlaygroundUnsur()" class="w-full accent-indigo-500">
+                                    <label class="block text-[9px] md:text-[10px] uppercase font-bold text-gray-400">Ketebalan Garis:</label>
+                                    <input type="range" id="slider-stroke" min="1" max="15" value="4" oninput="updatePlaygroundUnsur()" class="w-full accent-indigo-500 h-2 bg-gray-800 rounded-lg cursor-pointer">
                                 </div>
                                 <div class="space-y-1">
-                                    <label class="block text-[10px] uppercase font-bold text-gray-400">Komposisi Ruang Kosong (Padding/Jarak):</label>
-                                    <input type="range" id="slider-space" min="1" max="40" value="15" oninput="updatePlaygroundUnsur()" class="w-full accent-indigo-500">
+                                    <label class="block text-[9px] md:text-[10px] uppercase font-bold text-gray-400">Komposisi Ruang Kosong:</label>
+                                    <input type="range" id="slider-space" min="1" max="40" value="15" oninput="updatePlaygroundUnsur()" class="w-full accent-indigo-500 h-2 bg-gray-800 rounded-lg cursor-pointer">
                                 </div>
                                 <div class="space-y-1">
-                                    <label class="block text-[10px] uppercase font-bold text-gray-400">Temperatur Warna Seni:</label>
-                                    <select id="select-p-color" onchange="updatePlaygroundUnsur()" class="w-full bg-gray-900 text-xs text-slate-300 rounded-lg p-2 border border-gray-800">
-                                        <option value="#6366f1">Indigo Modern (Cool Temp)</option>
-                                        <option value="#f43f5e">Rose Vibrant (Hot Temp)</option>
+                                    <label class="block text-[9px] md:text-[10px] uppercase font-bold text-gray-400">Temperatur Warna Seni:</label>
+                                    <select id="select-p-color" onchange="updatePlaygroundUnsur()" class="w-full bg-gray-900 text-xs text-slate-300 rounded-lg p-2.5 border border-gray-800 min-h-[44px]">
+                                        <option value="#6366f1">Indigo Modern (Cool)</option>
+                                        <option value="#f43f5e">Rose Vibrant (Hot)</option>
                                         <option value="#10b981">Emerald Eco (Earth Tone)</option>
                                     </select>
                                 </div>
                             </div>
                             
-                            <div class="md:col-span-7 h-44 bg-gray-950 rounded-xl border border-gray-900 flex items-center justify-center relative overflow-hidden shadow-inner">
+                            <div class="md:col-span-7 h-36 md:h-44 bg-gray-950 rounded-xl border border-gray-900 flex items-center justify-center relative overflow-hidden shadow-inner">
                                 <span class="absolute top-2 left-2 text-[8px] uppercase tracking-wider text-gray-600 font-bold">Live Canvas Render</span>
-                                <svg class="w-full h-full p-4" viewBox="0 0 300 120" id="unsur-playground-canvas">
+                                <svg class="w-full h-full p-3" viewBox="0 0 300 120" id="unsur-playground-canvas">
                                     <line x1="20" y1="60" x2="120" y2="60" id="playground-line" stroke="#6366f1" stroke-width="4" stroke-linecap="round"/>
                                     <circle cx="210" cy="60" r="30" id="playground-circle" fill="#6366f1" opacity="0.8"/>
                                 </svg>
@@ -382,91 +394,88 @@
                     </div>
 
                     <!-- PRINCIPLES OF DESIGN WITH SVG COMPARISONS -->
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-2">2. Visualisasi Prinsip Tata Rupa Desain</h3>
-                        <p class="text-xs text-slate-400 mb-4">Pelajari perbandingan konsep dasar prinsip penataan visual yang tepat:</p>
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-2">2. Visualisasi Prinsip Tata Rupa Desain</h3>
+                        <p class="text-xs text-slate-400 mb-3.5">Pelajari perbandingan prinsip penataan visual yang tepat:</p>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             <!-- Keseimbangan Card -->
-                            <div class="p-4 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center">
-                                <svg class="w-24 h-16 mb-2" viewBox="0 0 120 80">
-                                    <!-- Balance representation -->
+                            <div class="p-3.5 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center">
+                                <svg class="w-20 h-12 mb-2" viewBox="0 0 120 80">
                                     <line x1="20" y1="60" x2="100" y2="60" stroke="#475569" stroke-width="3"/>
                                     <polygon points="60,60 55,75 65,75" fill="#64748b"/>
                                     <circle cx="35" cy="50" r="10" fill="#6366f1"/>
                                     <circle cx="85" cy="50" r="10" fill="#6366f1"/>
                                 </svg>
                                 <strong class="text-xs text-white block">Keseimbangan (Balance)</strong>
-                                <span class="text-[10px] text-slate-400 text-center mt-1">Pembagian bobot rupa seimbang demi menghadirkan kestabilan visual yang nyaman bagi mata.</span>
+                                <span class="text-[10px] text-slate-400 text-center mt-1 leading-relaxed">Pembagian bobot rupa simetris demi menghadirkan kestabilan visual.</span>
                             </div>
 
                             <!-- Kontras Card -->
-                            <div class="p-4 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center">
-                                <svg class="w-24 h-16 mb-2" viewBox="0 0 120 80">
-                                    <!-- Contrast representation -->
+                            <div class="p-3.5 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center">
+                                <svg class="w-20 h-12 mb-2" viewBox="0 0 120 80">
                                     <circle cx="30" cy="40" r="12" fill="#334155"/>
                                     <circle cx="60" cy="40" r="12" fill="#334155"/>
-                                    <circle cx="90" cy="40" r="12" fill="#f43f5e"/> <!-- Outstanding element -->
+                                    <circle cx="90" cy="40" r="12" fill="#f43f5e"/>
                                 </svg>
                                 <strong class="text-xs text-white block">Kontras (Contrast)</strong>
-                                <span class="text-[10px] text-slate-400 text-center mt-1">Pemberian perbedaan bentuk, ukuran, atau warna yang mencolok demi menarik perhatian.</span>
+                                <span class="text-[10px] text-slate-400 text-center mt-1 leading-relaxed">Pemberian perbedaan elemen rupa yang mencolok demi menarik perhatian.</span>
                             </div>
 
                             <!-- Hierarki Card -->
-                            <div class="p-4 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center">
-                                <svg class="w-24 h-16 mb-2" viewBox="0 0 120 80">
-                                    <!-- Hierarchy representation -->
+                            <div class="p-3.5 bg-gray-900/60 rounded-xl border border-gray-800 flex flex-col items-center">
+                                <svg class="w-20 h-12 mb-2" viewBox="0 0 120 80">
                                     <rect x="20" y="20" width="80" height="12" rx="3" fill="#6366f1"/>
                                     <rect x="20" y="38" width="55" height="6" rx="2" fill="#475569"/>
                                     <rect x="20" y="48" width="40" height="6" rx="2" fill="#475569"/>
                                 </svg>
                                 <strong class="text-xs text-white block">Hierarki (Hierarchy)</strong>
-                                <span class="text-[10px] text-slate-400 text-center mt-1">Pengaturan tata letak teks informasi berdasarkan urutan kepentingan baca bagi audiens.</span>
+                                <span class="text-[10px] text-slate-400 text-center mt-1 leading-relaxed">Pengaturan tata letak teks berdasarkan urutan skala prioritas baca.</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- MATERI 4 CONTENT -->
-                <div id="materi-sec-4" class="hidden space-y-6">
-                    <div class="p-5 bg-gray-950/60 border border-gray-800 rounded-2xl">
-                        <h3 class="text-lg font-bold text-white mb-3">Design Thinking (Metode Solusi Kreatif)</h3>
-                        <p class="text-xs text-slate-300 leading-relaxed mb-5">Proses penyelesaian masalah berpusat pada manusia yang dijalankan secara iteratif melalui lima tahapan terstruktur:</p>
+                <div id="materi-sec-4" class="hidden space-y-5">
+                    <div class="p-4 md:p-5 bg-gray-950/60 border border-gray-800 rounded-xl md:rounded-2xl">
+                        <h3 class="text-base md:text-lg font-bold text-white mb-2">Design Thinking (Metode Solusi Kreatif)</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">Proses penyelesaian masalah berpusat pada manusia lewat lima tahapan terstruktur:</p>
                         
-                        <div class="space-y-4">
-                            <div class="p-4 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
-                                <div class="w-8 h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-sm">1</div>
+                        <div class="space-y-3.5">
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
+                                <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">1</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-white uppercase">Empathize (Empati)</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Menggali sudut pandang dan memahami secara mendalam kebutuhan tulus dari pengguna yang mengalami masalah melalui interaksi wawancara langsung atau observasi.</p>
+                                    <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Menggali sudut pandang dan memahami secara mendalam kebutuhan tulus dari pengguna yang mengalami masalah.</p>
                                 </div>
                             </div>
-                            <div class="p-4 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
-                                <div class="w-8 h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-sm">2</div>
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
+                                <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">2</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-white uppercase">Define (Merumuskan Masalah)</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Mengompilasi dan mengidentifikasi pokok akar permasalahan nyata dari seluruh data empati yang telah dikumpulkan guna merumuskan target solusi secara jelas.</p>
+                                    <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Mengompilasi dan mengidentifikasi pokok akar permasalahan nyata dari seluruh data empati.</p>
                                 </div>
                             </div>
-                            <div class="p-4 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
-                                <div class="w-8 h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-sm">3</div>
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
+                                <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">3</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-white uppercase">Ideate (Menghasilkan Ide)</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Membuka ruang curah gagasan (brainstorming) guna menelurkan sebanyak mungkin alternatif ide kreatif tanpa hambatan untuk memecahkan masalah.</p>
+                                    <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Membuka ruang curah gagasan (brainstorming) guna menelurkan sebanyak mungkin alternatif ide kreatif.</p>
                                 </div>
                             </div>
-                            <div class="p-4 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
-                                <div class="w-8 h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-sm">4</div>
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
+                                <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">4</div>
                                 <div>
                                     <h4 class="text-xs font-bold text-white uppercase">Prototype (Rancangan Fisik)</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Merealisasikan ide-ide abstrak terpilih menjadi model purwarupa fisik atau digital interaktif sederhana demi menguji kesesuaian solusi secara riil.</p>
+                                    <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Merealisasikan ide terpilih menjadi model purwarupa sederhana demi menguji kesesuaian solusi.</p>
                                 </div>
                             </div>
-                            <div class="p-4 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
-                                <div class="w-8 h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-sm">5</div>
+                            <div class="p-3.5 bg-gray-900/40 rounded-xl border border-gray-800 flex gap-3 transition-all hover:bg-gray-900/80">
+                                <div class="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-indigo-950 text-indigo-300 border border-indigo-900/60 flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">5</div>
                                 <div>
-                                    <h4 class="text-xs font-bold text-white uppercase">Test (Pengujian Solusi)</h4>
-                                    <p class="text-xs text-slate-400 mt-1">Mengujicobakan prototipe langsung di hadapan target pengguna demi memanen evaluasi kritis, saran perbaikan, serta penyempurnaan rancangan produk.</p>
+                                    <h4 class="text-xs font-bold text-white uppercase">Test (Pengujian)</h4>
+                                    <p class="text-[11px] text-slate-400 mt-0.5 leading-relaxed">Mengujicobakan prototipe langsung di hadapan target pengguna demi memanen evaluasi kritis.</p>
                                 </div>
                             </div>
                         </div>
@@ -475,163 +484,163 @@
             </div>
 
             <!-- BUTTON ALIH KE SIMULATOR -->
-            <div class="mt-8 pt-6 border-t border-gray-900/60 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div class="flex items-start gap-2.5 max-w-xl text-xs text-slate-400 leading-relaxed">
-                    <span class="text-base">💡</span>
-                    <p><strong>Alur Pembelajaran:</strong> Setelah menguasai modul teori di atas, kini saatnya menguji kepiawaian kognitif dan keterampilan praktis Anda di dalam Studio Simulator Proyek untuk menyusun LKPD secara mandiri.</p>
+            <div class="mt-6 pt-5 border-t border-gray-900/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-start gap-2 max-w-xl text-xs text-slate-400 leading-relaxed">
+                    <span class="text-sm">💡</span>
+                    <p><strong>Alur Belajar:</strong> Setelah memahami materi, silakan klik tombol di bawah untuk berpindah ke ruang simulator proyek praktikum.</p>
                 </div>
-                <button onclick="switchMode('sim')" class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-bold py-3.5 px-7 rounded-2xl transition-all text-xs uppercase tracking-wider shadow-lg hover:shadow-indigo-500/20 w-full sm:w-auto active:scale-95 transform hover:scale-[1.01]">
-                    Buka Studio Simulator Proyek ➔
+                <button onclick="switchMode('sim')" class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-bold py-3 px-6 rounded-xl transition-all text-xs uppercase tracking-wider shadow-lg w-full sm:w-auto active:scale-95 min-h-[44px]">
+                    Buka Simulator Praktikum ➔
                 </button>
             </div>
         </section>
 
         <!-- ==================== PANEL 2: SIMULATOR & PROYEK ==================== -->
-        <div id="panel-sim" class="hidden w-full flex flex-col items-center justify-center gap-8">
+        <div id="panel-sim" class="hidden w-full flex flex-col items-center justify-center gap-6">
             
             <!-- STAGE 0: REGISTRASI -->
-            <div id="stage-login" class="w-full bg-[#0a0d16] border border-gray-800/80 rounded-3xl p-6 md:p-10 fade-in shadow-2xl">
-                <div class="max-w-md mx-auto text-center space-y-6">
-                    <div class="w-14 h-14 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-xl shadow-indigo-600/10">📝</div>
-                    <div class="space-y-1.5">
-                        <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Formulir Identitas Praktikan</h2>
-                        <p class="text-slate-400 text-xs">Isikan data diri resmi Anda sebelum memulai pengerjaan simulasi proyek.</p>
+            <div id="stage-login" class="w-full bg-[#0a0d16] border border-gray-800/80 rounded-2xl md:rounded-3xl p-5 md:p-10 fade-in shadow-2xl">
+                <div class="max-w-md mx-auto text-center space-y-5">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-xl mx-auto flex items-center justify-center text-xl shadow-xl shadow-indigo-600/10">📝</div>
+                    <div class="space-y-1">
+                        <h2 class="text-lg md:text-xl font-black text-white tracking-tight">Identitas Praktikan</h2>
+                        <p class="text-slate-400 text-xs">Silakan isikan data diri untuk mencatatkan hasil proyek ke lembar portofolio.</p>
                     </div>
                     
-                    <div class="space-y-4 text-left pt-2">
-                        <div class="space-y-1.5">
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Nama Lengkap Siswa</label>
-                            <input type="text" id="input-name" placeholder="Tulis nama lengkap Anda..." class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-indigo-500 font-medium transition-all shadow-inner">
+                    <div class="space-y-3.5 text-left pt-1">
+                        <div class="space-y-1">
+                            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Nama Lengkap</label>
+                            <input type="text" id="input-name" placeholder="Tulis nama lengkap Anda..." class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-indigo-500 font-medium transition-all shadow-inner min-h-[44px]">
                         </div>
-                        <div class="space-y-1.5">
+                        <div class="space-y-1">
                             <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Sekolah & Kelas</label>
-                            <input type="text" id="input-school" placeholder="Contoh: SMKN 1 Jakarta / X-DKV 1" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-indigo-500 font-medium transition-all shadow-inner">
+                            <input type="text" id="input-school" placeholder="Contoh: SMKN 1 Jakarta / X-DKV 1" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-indigo-500 font-medium transition-all shadow-inner min-h-[44px]">
                         </div>
                     </div>
 
-                    <button onclick="startApp()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3.5 px-4 rounded-xl transition-all text-xs uppercase tracking-wider shadow-md active:scale-[0.98]">
-                        Masuk Ruang Simulasi DKV
+                    <button onclick="startApp()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-4 rounded-xl transition-all text-xs uppercase tracking-wider shadow-md active:scale-[0.98] min-h-[44px]">
+                        Masuk Ruang Simulasi
                     </button>
                 </div>
             </div>
 
             <!-- STAGE 1: SPESIALISASI PERAN (Materi 1) -->
-            <section id="stage-career" class="hidden glass-panel p-6 md:p-10 rounded-3xl w-full fade-in shadow-2xl">
-                <div class="mb-6">
-                    <span class="text-[9px] bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2.5 py-1 rounded-md font-bold uppercase tracking-wide">Fase 1: Penentuan Karir</span>
-                    <h2 class="text-xl md:text-2xl font-black text-white mt-2 tracking-tight">Pilih Spesialisasi Peran Anda dalam Industri Kreatif</h2>
-                    <p class="text-slate-400 text-xs mt-1">Setiap keahlian memiliki peranan esensial yang saling berkolaborasi dalam menghasilkan karya visual berkelanjutan.</p>
+            <section id="stage-career" class="hidden glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl w-full fade-in shadow-2xl">
+                <div class="mb-5">
+                    <span class="text-[9px] bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2.5 py-1 rounded-md font-bold uppercase tracking-wide">Fase 1: Karir</span>
+                    <h2 class="text-lg md:text-xl font-black text-white mt-1.5 tracking-tight">Pilih Spesialisasi Peran Anda</h2>
+                    <p class="text-slate-400 text-xs mt-0.5">Pilih salah satu spesialisasi peran yang akan Anda mainkan dalam proyek:</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <button onclick="selectCareer('Graphic Designer')" class="text-left p-5 bg-gray-950/60 border border-gray-800/80 rounded-2xl hover:border-indigo-500/80 transition-all duration-300 flex flex-col justify-between group hover:scale-[1.02] hover:bg-gray-900/30">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button onclick="selectCareer('Graphic Designer')" class="text-left p-4.5 bg-gray-950/60 border border-gray-800/80 rounded-xl hover:border-indigo-500/80 transition-all duration-300 flex flex-col justify-between group hover:scale-[1.01] hover:bg-gray-900/30">
                         <div>
-                            <div class="w-full h-24 bg-indigo-950/20 rounded-xl mb-4 flex items-center justify-center text-3xl border border-indigo-950 transition-all group-hover:bg-indigo-950/40">🎨</div>
-                            <h3 class="font-extrabold text-white text-sm group-hover:text-indigo-400 transition-colors">Graphic Designer</h3>
-                            <p class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">Fokus pada eksplorasi estetika visual, keseimbangan rupa, tata letak teks, penataan warna, serta legibilitas tipografi visual kemasan.</p>
+                            <div class="w-full h-20 bg-indigo-950/20 rounded-lg mb-3 flex items-center justify-center text-2xl border border-indigo-950 transition-all group-hover:bg-indigo-950/40">🎨</div>
+                            <h3 class="font-extrabold text-white text-xs md:text-sm group-hover:text-indigo-400 transition-colors">Graphic Designer</h3>
+                            <p class="text-[10px] md:text-[11px] text-slate-400 mt-1 leading-relaxed">Fokus pada estetika visual, tata rupa kemasan, serta penataan unsur tipografi.</p>
                         </div>
-                        <span class="block w-full text-center text-[9px] bg-indigo-950 text-indigo-300 px-2 py-1.5 rounded-lg mt-5 font-bold border border-indigo-900/40">Bonus Awal: +15 Rupa Nirmana</span>
+                        <span class="block w-full text-center text-[8px] md:text-[9px] bg-indigo-950 text-indigo-300 px-2 py-1.5 rounded-lg mt-4 font-bold border border-indigo-900/40">Bonus: +15 Rupa Nirmana</span>
                     </button>
 
-                    <button onclick="selectCareer('Packaging Designer')" class="text-left p-5 bg-gray-950/60 border border-gray-800/80 rounded-2xl hover:border-amber-500/80 transition-all duration-300 flex flex-col justify-between group hover:scale-[1.02] hover:bg-gray-900/30">
+                    <button onclick="selectCareer('Packaging Designer')" class="text-left p-4.5 bg-gray-950/60 border border-gray-800/80 rounded-xl hover:border-amber-500/80 transition-all duration-300 flex flex-col justify-between group hover:scale-[1.01] hover:bg-gray-900/30">
                         <div>
-                            <div class="w-full h-24 bg-amber-950/20 rounded-xl mb-4 flex items-center justify-center text-3xl border border-amber-950 transition-all group-hover:bg-amber-950/40">📦</div>
-                            <h3 class="font-extrabold text-white text-sm group-hover:text-amber-400 transition-colors">Packaging Designer</h3>
-                            <p class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">Fokus pada rekayasa ergonomi struktural wadah kemasan (dieline), efisiensi fungsional, kemudahan distribusi, serta proteksi komoditas pangan.</p>
+                            <div class="w-full h-20 bg-amber-950/20 rounded-lg mb-3 flex items-center justify-center text-2xl border border-amber-950 transition-all group-hover:bg-amber-950/40">📦</div>
+                            <h3 class="font-extrabold text-white text-xs md:text-sm group-hover:text-amber-400 transition-colors">Packaging Designer</h3>
+                            <p class="text-[10px] md:text-[11px] text-slate-400 mt-1 leading-relaxed">Fokus pada rekayasa kekuatan bentuk kemasan (dieline) & keamanan pangan.</p>
                         </div>
-                        <span class="block w-full text-center text-[9px] bg-amber-950 text-amber-300 px-2 py-1.5 rounded-lg mt-5 font-bold border border-amber-900/40">Bonus Awal: +15 Komunikasi Pasar</span>
+                        <span class="block w-full text-center text-[8px] md:text-[9px] bg-amber-950 text-amber-300 px-2 py-1.5 rounded-lg mt-4 font-bold border border-amber-900/40">Bonus: +15 Komunikasi Pasar</span>
                     </button>
 
-                    <button onclick="selectCareer('Print Specialist')" class="text-left p-5 bg-gray-950/60 border border-gray-800/80 rounded-2xl hover:border-emerald-500/80 transition-all duration-300 flex flex-col justify-between group hover:scale-[1.02] hover:bg-gray-900/30">
+                    <button onclick="selectCareer('Print Specialist')" class="text-left p-4.5 bg-gray-950/60 border border-gray-800/80 rounded-2xl hover:border-emerald-500/80 transition-all duration-300 flex flex-col justify-between group hover:scale-[1.01] hover:bg-gray-900/30">
                         <div>
-                            <div class="w-full h-24 bg-emerald-950/20 rounded-xl mb-4 flex items-center justify-center text-3xl border border-emerald-950 transition-all group-hover:bg-emerald-950/40">🖨️</div>
-                            <h3 class="font-extrabold text-white text-sm group-hover:text-emerald-400 transition-colors">Print Specialist</h3>
-                            <p class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">Fokus pada efisiensi proses pra-cetak (prepress), kalkulasi sisa potongan bahan, separasi pigmen tinta sirkular, dan minimisasi emisi kimia cair berbahaya.</p>
+                            <div class="w-full h-20 bg-emerald-950/20 rounded-lg mb-3 flex items-center justify-center text-2xl border border-emerald-950 transition-all group-hover:bg-emerald-950/40">🖨️</div>
+                            <h3 class="font-extrabold text-white text-xs md:text-sm group-hover:text-emerald-400 transition-colors">Print Specialist</h3>
+                            <p class="text-[10px] md:text-[11px] text-slate-400 mt-1 leading-relaxed">Fokus pada kalkulasi pra-cetak, efisiensi sisa pemotongan, & tinta ramah lingkungan.</p>
                         </div>
-                        <span class="block w-full text-center text-[9px] bg-emerald-950 text-emerald-300 px-2 py-1.5 rounded-lg mt-5 font-bold border border-emerald-900/40">Bonus Awal: +15 Siklus Hijau</span>
+                        <span class="block w-full text-center text-[8px] md:text-[9px] bg-emerald-950 text-emerald-300 px-2 py-1.5 rounded-lg mt-4 font-bold border border-emerald-900/40">Bonus: +15 Siklus Hijau</span>
                     </button>
                 </div>
             </section>
 
             <!-- STAGE 2: EMPATHIZE & DEFINE (Design Thinking) -->
-            <section id="stage-chat" class="hidden glass-panel p-6 rounded-3xl w-full fade-in shadow-2xl">
-                <div class="flex items-center justify-between border-b border-gray-800/80 pb-4 mb-5">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-xl border border-gray-700">👵</div>
+            <section id="stage-chat" class="hidden glass-panel p-4 md:p-6 rounded-2xl md:rounded-3xl w-full fade-in shadow-2xl">
+                <div class="flex items-center justify-between border-b border-gray-800/80 pb-3 mb-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-lg border border-gray-700 flex-shrink-0">👵</div>
                         <div>
-                            <h3 class="font-extrabold text-white text-xs md:text-sm tracking-tight">Ibu Sari (UMKM Keripik Pisang Barokah)</h3>
-                            <p class="text-[9px] md:text-[10px] text-emerald-400 flex items-center gap-1.5 font-medium mt-0.5">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Design Thinking: Empathize & Define
+                            <h3 class="font-extrabold text-white text-xs md:text-sm tracking-tight">Ibu Sari (UMKM Keripik Pisang)</h3>
+                            <p class="text-[9px] text-emerald-400 flex items-center gap-1 font-medium mt-0.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Empathize & Define
                             </p>
                         </div>
                     </div>
-                    <span class="text-[9px] bg-purple-950 text-purple-300 border border-purple-900/50 font-bold px-2.5 py-1 rounded-lg">Brief Kasus Nyata</span>
+                    <span class="text-[8px] md:text-[9px] bg-purple-950 text-purple-300 border border-purple-900/50 font-bold px-2 py-0.5 rounded-md">Studi Kasus</span>
                 </div>
                 
-                <div id="chat-history-box" class="space-y-4 mb-5 min-h-[140px] max-h-[220px] bg-gray-950 border border-gray-900/60 p-4 rounded-2xl overflow-y-auto text-xs md:text-sm leading-relaxed text-slate-300 shadow-inner">
-                    <div class="bg-gray-900/80 border border-gray-800 p-3.5 rounded-r-2xl rounded-bl-2xl max-w-[85%] text-slate-300 shadow-sm font-medium">
-                        "Halo nak desainer. Keripik pisang saya ingin masuk ke swalayan modern yang lebih besar. Namun, kemasan plastik biasa dengan pengait stapler yang sekarang saya gunakan ditolak pihak swalayan karena dinilai merusak lingkungan, mudah rusak di rak, dan tampilannya kurang bersaing. Saya bingung harus bagaimana agar produk tetap awet, laris, namun kemasannya tetap ramah lingkungan."
+                <div id="chat-history-box" class="space-y-3 mb-4 min-h-[120px] max-h-[180px] bg-gray-950 border border-gray-900/60 p-3.5 rounded-xl overflow-y-auto text-xs leading-relaxed text-slate-300 shadow-inner">
+                    <div class="bg-gray-900/80 border border-gray-800 p-3 rounded-r-xl rounded-bl-xl max-w-[90%] text-slate-300 font-medium">
+                        "Halo nak desainer. Keripik pisang saya ditolak pihak swalayan karena kemasan plastik lama dinilai merusak alam, gampang remuk, & kurang menjual. Bagaimana cara membuat kemasan agar awet, menarik, namun ramah lingkungan?"
                     </div>
                 </div>
 
-                <div id="chat-options-container" class="grid grid-cols-1 gap-3">
-                    <button onclick="selectChatOption(1)" class="w-full text-left p-4 bg-gray-950/60 border border-gray-800 rounded-xl hover:border-indigo-500 hover:bg-indigo-950/10 text-xs md:text-sm transition-all text-slate-300 group active:scale-[0.99]">
-                        💡 <strong class="text-emerald-400 group-hover:text-emerald-300">[Arah Solusi Sirkular]</strong> "Saya rekomendasikan standing pouch berbahan kertas kraft alami biodegradable. Untuk visualnya kita buat minimalis hemat tinta agar sisa kemasan nantinya mudah terurai kembali ke tanah secara alami, Ibu."
+                <div id="chat-options-container" class="grid grid-cols-1 gap-2.5">
+                    <button onclick="selectChatOption(1)" class="w-full text-left p-3.5 bg-gray-950/60 border border-gray-800 rounded-xl hover:border-indigo-500 hover:bg-indigo-950/10 text-xs transition-all text-slate-300 group active:scale-[0.99] min-h-[44px] leading-relaxed">
+                        💡 <strong class="text-emerald-400 group-hover:text-emerald-300">[Solusi Sirkular]</strong> "Gunakan standing pouch kertas kraft kompos alami. Visual dibuat minimalis hemat cetakan tinta agar kemasannya mudah terurai ke tanah alami."
                      </button>
-                     <button onclick="selectChatOption(2)" class="w-full text-left p-4 bg-gray-950/60 border border-gray-800 rounded-xl hover:border-indigo-500 hover:bg-indigo-950/10 text-xs md:text-sm transition-all text-slate-300 group active:scale-[0.99]">
-                        💡 <strong class="text-amber-400 group-hover:text-amber-300">[Arah Solusi Konvensional]</strong> "Gunakan material aluminium foil berlapis laminasi plastik berkilau tebal saja, Ibu. Kita hias dengan cetakan sablon penuh warna jenuh mencolok di seluruh permukaan agar menarik, meskipun nantinya mustahil diurai bumi."
+                     <button onclick="selectChatOption(2)" class="w-full text-left p-3.5 bg-gray-950/60 border border-gray-800 rounded-xl hover:border-indigo-500 hover:bg-indigo-950/10 text-xs transition-all text-slate-300 group active:scale-[0.99] min-h-[44px] leading-relaxed">
+                        💡 <strong class="text-amber-400 group-hover:text-amber-300">[Solusi Konvensional]</strong> "Pakai bahan logam aluminium foil tebal mengilap dengan cetakan warna mencolok di seluruh permukaan agar menarik, walau sulit diurai bumi."
                      </button>
                 </div>
             </section>
 
             <!-- STAGE 3: CONFIGURATOR & PROTOTYPE VISUALIZER (Materi 2, 3, & 4) -->
-            <section id="stage-materials" class="hidden glass-panel p-5 md:p-8 rounded-3xl w-full fade-in shadow-2xl">
-                <div class="mb-6 border-b border-gray-900 pb-4">
-                    <span class="text-[9px] bg-purple-950 text-purple-300 border border-purple-900/60 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Design Thinking: Ideate & Prototype</span>
-                    <h2 class="text-xl md:text-2xl font-black text-white mt-2 tracking-tight">Konfigurasi Material Fisik & Unsur Visual Rupa</h2>
-                    <p class="text-slate-400 text-xs mt-0.5">Eksplorasi kecocokan teori teknologi cetak, daur hidup material, serta prinsip rupa desain secara dinamis.</p>
+            <section id="stage-materials" class="hidden glass-panel p-4 md:p-6 rounded-2xl md:rounded-3xl w-full fade-in shadow-2xl">
+                <div class="mb-5 border-b border-gray-900 pb-3">
+                    <span class="text-[9px] bg-purple-950 text-purple-300 border border-purple-900/60 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Ideate & Prototype</span>
+                    <h2 class="text-lg md:text-xl font-black text-white mt-1 tracking-tight">Konfigurasi Material & Visual</h2>
+                    <p class="text-slate-400 text-xs mt-0.5">Konfigurasikan spesifikasi teknik produksi sirkular kemasan Anda:</p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
                     <!-- Configurator Panel -->
-                    <div class="lg:col-span-6 space-y-4 flex flex-col justify-between">
+                    <div class="lg:col-span-6 space-y-3.5 flex flex-col justify-between order-2 lg:order-1">
                         <div class="space-y-3">
                             <div class="space-y-1">
-                                <label class="block text-[9px] font-bold uppercase tracking-wider text-slate-400">1. Struktur Bahan Kemasan (Life Cycle/LCA)</label>
-                                <select id="select-material" onchange="updateLiveMockup(); Sound.play('click');" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-indigo-500 transition-all cursor-pointer">
-                                    <option value="kraft">♻️ Kertas Kraft Kompos + Lapisan Bio-PLA Jagung (Biodegradable Loop)</option>
-                                    <option value="foil">🏬 Aluminium Foil Komposit + Laminasi Plastik Glossy (Limbah Linear - Proteksi Maksimal, Emisi Tinggi)</option>
-                                    <option value="rpet">🧪 Recycled PET (Plastik Transparan Daur Ulang Teknis) (Technical Loop - Kuat & Ekonomis)</option>
+                                <label class="block text-[9px] font-bold uppercase tracking-wider text-slate-400">1. Struktur Bahan Kemasan</label>
+                                <select id="select-material" onchange="updateLiveMockup(); Sound.play('click');" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-3 text-xs focus:outline-none focus:border-indigo-500 transition-all cursor-pointer min-h-[44px]">
+                                    <option value="kraft">♻️ Kertas Kraft Kompos + Bio-PLA Jagung (Biodegradable)</option>
+                                    <option value="foil">🏬 Aluminium Foil Komposit + Laminasi (Proteksi Tinggi, Emisi Tinggi)</option>
+                                    <option value="rpet">🧪 Recycled PET Plastik Transparan (Technical Daur Ulang)</option>
                                 </select>
                             </div>
 
                             <div class="space-y-1">
-                                <label class="block text-[9px] font-bold uppercase tracking-wider text-slate-400">2. Jenis Tinta Cetak (Teknologi Grafika)</label>
-                                <select id="select-ink" onchange="updateLiveMockup(); Sound.play('click');" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-indigo-500 transition-all cursor-pointer">
-                                    <option value="soy">🌱 Tinta Organik Kedelai (Soy Ink) + Waterless Offset (Rendah Emisi Gas VOC)</option>
-                                    <option value="solvent">⚗️ Tinta Solvent Kimia Sintetis (Warna Pekat, Emisi Polusi Udara Tinggi)</option>
+                                <label class="block text-[9px] font-bold uppercase tracking-wider text-slate-400">2. Jenis Tinta Cetak</label>
+                                <select id="select-ink" onchange="updateLiveMockup(); Sound.play('click');" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-3 text-xs focus:outline-none focus:border-indigo-500 transition-all cursor-pointer min-h-[44px]">
+                                    <option value="soy">🌱 Tinta Organik Kedelai (Soy Ink) + Waterless Offset</option>
+                                    <option value="solvent">⚗️ Tinta Solvent Kimia Sintetis (Emisi Polusi Tinggi)</option>
                                 </select>
                             </div>
 
                             <div class="space-y-1">
-                                <label class="block text-[9px] font-bold uppercase tracking-wider text-slate-400">3. Langgam Estetika Visual (Prinsip Unsur Desain)</label>
-                                <select id="select-visual" onchange="updateLiveMockup(); Sound.play('click');" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-indigo-500 transition-all cursor-pointer">
-                                    <option value="minimalist">🌿 Estetika Minimalis Earth Tone (Banyak Ruang Kosong, Legibilitas Tinggi, Hemat Tinta)</option>
-                                    <option value="vibrant">💥 Ilustrasi Ekspresif Pop Vibrant (Kontras Saturasi Ekstrem, Konsumsi Tinta Maksimal)</option>
+                                <label class="block text-[9px] font-bold uppercase tracking-wider text-slate-400">3. Langgam Estetika Visual</label>
+                                <select id="select-visual" onchange="updateLiveMockup(); Sound.play('click');" class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-3 text-xs focus:outline-none focus:border-indigo-500 transition-all cursor-pointer min-h-[44px]">
+                                    <option value="minimalist">🌿 Estetika Minimalis Earth Tone (Ruang Kosong, Hemat Tinta)</option>
+                                    <option value="vibrant">💥 Ilustrasi Ekspresif Pop Vibrant (Konsumsi Tinta Tinggi)</option>
                                 </select>
                             </div>
                         </div>
 
                         <!-- Real-time Feedback Textbox -->
-                        <div class="bg-indigo-950/20 border border-indigo-900/50 p-3 rounded-xl text-xs text-indigo-300">
-                            <span class="font-bold block text-[8px] uppercase tracking-widest text-indigo-400 mb-0.5">Tinjauan Analisis Rupa & Komunikasi:</span>
+                        <div class="bg-indigo-950/20 border border-indigo-900/50 p-3.5 rounded-xl text-xs text-indigo-300">
+                            <span class="font-bold block text-[8px] uppercase tracking-widest text-indigo-400 mb-0.5">Analisis Komposisi Nirmana:</span>
                             <p id="live-design-feedback" class="leading-relaxed font-medium">Mengevaluasi keselarasan unsur...</p>
                         </div>
 
                         <!-- Real-time Metrics HUD -->
-                        <div class="grid grid-cols-2 gap-3 bg-gray-950 p-3 rounded-xl border border-gray-900 text-[11px]">
+                        <div class="grid grid-cols-2 gap-2.5 bg-gray-950 p-3 rounded-xl border border-gray-900 text-xs">
                             <div>
-                                <span class="block text-[8px] text-gray-500 font-bold uppercase tracking-wider">Estimasi Jejak Karbon</span>
+                                <span class="block text-[8px] text-gray-500 font-bold uppercase tracking-wider">Jejak Emisi Karbon</span>
                                 <span id="live-co2" class="font-extrabold text-emerald-400 mt-0.5 block font-mono">Menghitung...</span>
                             </div>
                             <div>
@@ -641,57 +650,57 @@
                         </div>
 
                         <!-- PROYEK AKHIR FORM INPUTS (Syllabus Integration) -->
-                        <div class="bg-gray-900/40 border border-gray-800 p-4 rounded-xl space-y-3">
-                            <span class="block text-[9px] font-black uppercase tracking-wider text-indigo-400">📋 Lembar Kerja Proyek Akhir (Ketik Data Konsep):</span>
+                        <div class="bg-gray-900/40 border border-gray-800 p-3.5 rounded-xl space-y-3">
+                            <span class="block text-[9px] font-black uppercase tracking-wider text-indigo-400">📋 Formulir Rencana Proyek Akhir:</span>
                             
-                            <div class="grid grid-cols-2 gap-2">
-                                <div>
-                                    <label class="block text-[8px] font-bold text-slate-400 uppercase">Nama Produk Rancangan</label>
-                                    <input type="text" id="proj-name" placeholder="Keripik Barokah" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2 text-xs focus:outline-none focus:border-indigo-500 font-medium">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div class="space-y-0.5">
+                                    <label class="block text-[8px] font-bold text-slate-400 uppercase">Nama Produk</label>
+                                    <input type="text" id="proj-name" placeholder="Keripik Barokah" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2.5 text-xs focus:outline-none focus:border-indigo-500 font-medium min-h-[40px]">
                                 </div>
-                                <div>
-                                    <label class="block text-[8px] font-bold text-slate-400 uppercase">Target Pengguna Utama</label>
-                                    <input type="text" id="proj-target" placeholder="Konsumen Swalayan Modern" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2 text-xs focus:outline-none focus:border-indigo-500 font-medium">
+                                <div class="space-y-0.5">
+                                    <label class="block text-[8px] font-bold text-slate-400 uppercase">Target Pengguna</label>
+                                    <input type="text" id="proj-target" placeholder="Konsumen Swalayan" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2.5 text-xs focus:outline-none focus:border-indigo-500 font-medium min-h-[40px]">
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <div>
-                                    <label class="block text-[8px] font-bold text-slate-400 uppercase">Akar Masalah Pengguna</label>
-                                    <input type="text" id="proj-problem" placeholder="Kemasan lama ditolak swalayan, mudah rusak" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2 text-xs focus:outline-none focus:border-indigo-500 font-medium">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div class="space-y-0.5">
+                                    <label class="block text-[8px] font-bold text-slate-400 uppercase">Akar Masalah</label>
+                                    <input type="text" id="proj-problem" placeholder="Kemasan rusak, plastik tidak diizinkan" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2.5 text-xs focus:outline-none focus:border-indigo-500 font-medium min-h-[40px]">
                                 </div>
-                                <div>
+                                <div class="space-y-0.5">
                                     <label class="block text-[8px] font-bold text-slate-400 uppercase">Solusi Desain</label>
-                                    <input type="text" id="proj-solution" placeholder="Standing pouch kertas kraft ramah lingkungan" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2 text-xs focus:outline-none focus:border-indigo-500 font-medium">
+                                    <input type="text" id="proj-solution" placeholder="Pouch kertas kraft sirkular" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2.5 text-xs focus:outline-none focus:border-indigo-500 font-medium min-h-[40px]">
                                 </div>
                             </div>
-                            <div>
-                                <label class="block text-[8px] font-bold text-slate-400 uppercase">Material Berkelanjutan Yang Dipakai</label>
-                                <input type="text" id="proj-material-text" placeholder="Kertas Kraft Kompos, Bio-PLA Jagung, Soy Ink" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2 text-xs focus:outline-none focus:border-indigo-500 font-medium">
+                            <div class="space-y-0.5">
+                                <label class="block text-[8px] font-bold text-slate-400 uppercase">Material Ramah Lingkungan</label>
+                                <input type="text" id="proj-material-text" placeholder="Kertas Kraft Kompos, Soy Ink" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2.5 text-xs focus:outline-none focus:border-indigo-500 font-medium min-h-[40px]">
                             </div>
                         </div>
 
                         <!-- VALIDASI MINI QUIZ (Syllabus Integration) -->
-                        <div class="bg-purple-950/20 border border-purple-900/40 p-4 rounded-xl space-y-2">
-                            <label class="block text-[9px] font-bold uppercase tracking-wider text-purple-400">❓ Evaluasi Kognitif Mandiri:</label>
+                        <div class="bg-purple-950/20 border border-purple-900/40 p-3.5 rounded-xl space-y-2">
+                            <label class="block text-[9px] font-bold uppercase tracking-wider text-purple-400">❓ Evaluasi Mandiri:</label>
                             <p class="text-[11px] text-slate-300">Mengapa penting memilih jenis tinta kedelai (Soy Ink) daripada tinta solvent dalam desain ramah lingkungan?</p>
-                            <select id="quiz-answer" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2 text-[11px] focus:outline-none focus:border-purple-500 cursor-pointer">
-                                <option value="wrong">Tinta tidak memiliki kaitan langsung dengan keramahan lingkungan sirkular.</option>
-                                <option value="right">Tinta kimia solvent menyisakan residu logam berat beracun yang menghambat dekomposisi tanah.</option>
+                            <select id="quiz-answer" class="w-full bg-gray-950 text-white border border-gray-800 rounded-lg p-2.5 text-[11px] focus:outline-none focus:border-purple-500 cursor-pointer min-h-[44px]">
+                                <option value="wrong">Tinta tidak memiliki kaitan langsung dengan kerusakan lingkungan.</option>
+                                <option value="right">Tinta kimia solvent menyisakan residu logam berat beracun yang merusak kesuburan tanah.</option>
                             </select>
                         </div>
 
-                        <button onclick="goToFinalTest()" class="w-full bg-gradient-to-r from-indigo-600 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-all text-xs uppercase tracking-widest shadow-md active:scale-[0.99]">
+                        <button onclick="goToFinalTest()" class="w-full bg-gradient-to-r from-indigo-600 to-emerald-600 hover:from-indigo-500 hover:to-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-all text-xs uppercase tracking-widest shadow-md active:scale-[0.99] min-h-[44px]">
                             Kunci Desain & Hitung LKPD ➔
                         </button>
                     </div>
 
                     <!-- Live Visualizer Canvas -->
-                    <div class="lg:col-span-6 bg-gray-950 border border-gray-900 rounded-2xl p-6 flex flex-col justify-between items-center relative overflow-hidden min-h-[340px] shadow-inner">
-                        <span class="absolute top-4 left-4 text-[9px] bg-gray-900 border border-gray-800 text-slate-400 px-2.5 py-1 rounded-lg font-bold uppercase tracking-wider">Kanvas Live Visualizer Prototype</span>
+                    <div class="lg:col-span-6 bg-gray-950 border border-gray-900 rounded-xl p-4 md:p-6 flex flex-col justify-between items-center relative overflow-hidden min-h-[280px] md:min-h-[340px] shadow-inner order-1 lg:order-2">
+                        <span class="absolute top-3 left-3 text-[8px] md:text-[9px] bg-gray-900 border border-gray-800 text-slate-400 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Purwarupa Kemasan</span>
                         
                         <!-- SVG Mockup -->
-                        <div class="w-full max-w-[180px] aspect-[3/4] relative mt-8 transition-all duration-300 animate-pulse" id="mockup-container">
-                            <svg viewBox="0 0 200 260" class="w-full h-full drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)]">
+                        <div class="w-full max-w-[130px] sm:max-w-[150px] aspect-[3/4] relative mt-6 transition-all duration-300" id="mockup-container">
+                            <svg viewBox="0 0 200 260" class="w-full h-full drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]">
                                 <defs>
                                     <linearGradient id="metallic-foil" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style="stop-color:#94a3b8;stop-opacity:1" />
@@ -735,34 +744,34 @@
                         </div>
 
                         <!-- Active Configuration Labels -->
-                        <div class="w-full text-center mt-4 text-[10px] text-gray-500 font-semibold border-t border-gray-900 pt-3">
-                            Spesifikasi Aktif: <span id="lbl-mat" class="text-indigo-400 font-bold font-mono">KRAFT</span> | <span id="lbl-ink" class="text-indigo-400 font-bold font-mono">SOY INK</span> | <span id="lbl-style" class="text-indigo-400 font-bold font-mono">MINIMALIS</span>
+                        <div class="w-full text-center mt-3 text-[9px] text-gray-500 font-semibold border-t border-gray-900 pt-2.5">
+                            Spesifikasi: <span id="lbl-mat" class="text-indigo-400 font-bold font-mono">KRAFT</span> | <span id="lbl-ink" class="text-indigo-400 font-bold font-mono">SOY INK</span> | <span id="lbl-style" class="text-indigo-400 font-bold font-mono">MINIMALIS</span>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- STAGE 4: EVALUATION & REPORT (LKPD DIGITAL COMPONENT) -->
-            <section id="stage-report" class="hidden w-full bg-[#0a0d16] border border-gray-800/80 rounded-3xl p-6 md:p-10 fade-in shadow-2xl">
-                <div class="border-b-2 border-gray-800 pb-5 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <section id="stage-report" class="hidden w-full bg-[#0a0d16] border border-gray-800/80 rounded-2xl md:rounded-3xl p-4 md:p-8 fade-in shadow-2xl">
+                <div class="border-b-2 border-gray-800 pb-4 mb-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
                     <div>
-                        <span class="text-[9px] bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2.5 py-1 rounded font-bold uppercase tracking-widest print-hidden">Fase Akhir: Hasil Belajar</span>
-                        <h2 class="text-xl md:text-2xl font-black text-white uppercase tracking-tight print-text-black">Lembar Kerja Peserta Didik (LKPD) Digital</h2>
-                        <p class="text-slate-400 text-xs mt-1">Dokumen Asesmen Mandiri & Penilaian Proyek Kompetensi Dasar Kejuruan Grafika Hijau DKV</p>
+                        <span class="text-[9px] bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2.5 py-1 rounded font-bold uppercase tracking-widest print-hidden">Asesmen Akhir</span>
+                        <h2 class="text-lg md:text-xl font-black text-white uppercase tracking-tight print-text-black">Lembar Kerja Peserta Didik (LKPD)</h2>
+                        <p class="text-slate-400 text-xs mt-0.5">Dokumen Asesmen Mandiri & Portofolio Karya Desain Berkelanjutan</p>
                     </div>
                     
-                    <div class="flex flex-wrap items-center gap-3 print-hidden">
-                        <button id="btn-sheets" onclick="kirimKeGoogleSheets()" class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-all active:scale-95">
-                            📤 Simpan Cloud & Kirim Nilai
+                    <div class="flex flex-row items-center gap-2 w-full md:w-auto print-hidden">
+                        <button id="btn-sheets" onclick="kirimKeGoogleSheets()" class="flex-1 md:flex-none flex items-center justify-center gap-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-4 py-3 rounded-xl font-bold text-xs shadow-md transition-all active:scale-95 min-h-[44px]">
+                            Simpan Cloud
                         </button>
-                        <button onclick="window.print()" class="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-all active:scale-95">
-                            🖨️ Cetak Hasil Kerja (PDF)
+                        <button onclick="window.print()" class="flex-1 md:flex-none flex items-center justify-center gap-1.5 bg-gray-800 hover:bg-gray-700 text-white px-4 py-3 rounded-xl font-bold text-xs shadow-md transition-all active:scale-95 min-h-[44px]">
+                            Cetak PDF
                         </button>
                     </div>
                 </div>
 
                 <!-- Identity Grid Block -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 bg-gray-950 p-5 rounded-2xl border border-gray-900/80 mb-6 print-border text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-gray-950 p-4 rounded-xl border border-gray-900/80 mb-5 print-border text-xs">
                     <div class="space-y-0.5">
                         <span class="text-[9px] uppercase font-bold text-gray-500 block">Nama Lengkap Siswa</span>
                         <span id="rep-name" class="text-sm font-extrabold text-white print-text-black">-</span>
@@ -778,89 +787,89 @@
                 </div>
 
                 <!-- Final Scores Metric Card Grid -->
-                <div class="grid grid-cols-3 gap-4 text-center mb-6">
-                    <div class="bg-gray-900/30 p-4 rounded-xl border border-gray-900 shadow-sm print-border">
-                        <span class="text-[9px] uppercase font-black text-blue-400 tracking-wider block">Skor Rupa Nirmana</span>
-                        <span id="rep-score-design" class="text-xl font-black text-white mt-1 block font-mono print-text-black">0</span>
+                <div class="grid grid-cols-3 gap-3 text-center mb-5">
+                    <div class="bg-gray-900/30 p-3 rounded-xl border border-gray-900 shadow-sm print-border">
+                        <span class="text-[8px] md:text-[9px] uppercase font-black text-blue-400 tracking-wider block">Nirmana</span>
+                        <span id="rep-score-design" class="text-lg md:text-xl font-black text-white mt-1 block font-mono print-text-black">0</span>
                     </div>
-                    <div class="bg-gray-900/30 p-4 rounded-xl border border-gray-900 shadow-sm print-border">
-                        <span class="text-[9px] uppercase font-black text-amber-400 tracking-wider block">Skor Komunikasi Pasar</span>
-                        <span id="rep-score-client" class="text-xl font-black text-white mt-1 block font-mono print-text-black">0</span>
+                    <div class="bg-gray-900/30 p-3 rounded-xl border border-gray-900 shadow-sm print-border">
+                        <span class="text-[8px] md:text-[9px] uppercase font-black text-amber-400 tracking-wider block">Pasar</span>
+                        <span id="rep-score-client" class="text-lg md:text-xl font-black text-white mt-1 block font-mono print-text-black">0</span>
                     </div>
-                    <div class="bg-gray-900/30 p-4 rounded-xl border border-gray-900 shadow-sm print-border">
-                        <span class="text-[9px] uppercase font-black text-emerald-400 tracking-wider block">Skor Siklus Hijau</span>
-                        <span id="rep-score-eco" class="text-xl font-black text-white mt-1 block font-mono print-text-black">0</span>
+                    <div class="bg-gray-900/30 p-3 rounded-xl border border-gray-900 shadow-sm print-border">
+                        <span class="text-[8px] md:text-[9px] uppercase font-black text-emerald-400 tracking-wider block">Ekologi</span>
+                        <span id="rep-score-eco" class="text-lg md:text-xl font-black text-white mt-1 block font-mono print-text-black">0</span>
                     </div>
                 </div>
 
                 <!-- PROYEK AKHIR REPORT BLOCK (Syllabus Output) -->
-                <div class="bg-gray-950 p-5 rounded-2xl border border-gray-900/80 mb-6 print-border space-y-4 text-xs">
-                    <h4 class="text-xs font-bold uppercase text-indigo-400 tracking-widest border-b border-gray-800 pb-2">📋 Hasil Rancangan Proyek Akhir Siswa</h4>
+                <div class="bg-gray-950 p-4.5 rounded-xl border border-gray-900/80 mb-5 print-border space-y-3.5 text-xs">
+                    <h4 class="text-xs font-bold uppercase text-indigo-400 tracking-widest border-b border-gray-800 pb-1.5">📋 Konsep Hasil Proyek</h4>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <span class="text-[9px] uppercase font-bold text-gray-500 block">Nama Produk Kreatif</span>
+                            <span class="text-[8px] md:text-[9px] uppercase font-bold text-gray-500 block">Nama Produk Kreatif</span>
                             <span id="rep-proj-name" class="font-bold text-white print-text-black">-</span>
                         </div>
                         <div>
-                            <span class="text-[9px] uppercase font-bold text-gray-500 block">Target Pengguna Utama</span>
+                            <span class="text-[8px] md:text-[9px] uppercase font-bold text-gray-500 block">Target Pengguna Utama</span>
                             <span id="rep-proj-target" class="font-bold text-white print-text-black">-</span>
                         </div>
                         <div>
-                            <span class="text-[9px] uppercase font-bold text-gray-500 block">Masalah Utama</span>
+                            <span class="text-[8px] md:text-[9px] uppercase font-bold text-gray-500 block">Masalah Utama</span>
                             <span id="rep-proj-problem" class="font-bold text-white print-text-black">-</span>
                         </div>
                         <div>
-                            <span class="text-[9px] uppercase font-bold text-gray-500 block">Solusi Desain Komunikasi Visual</span>
+                            <span class="text-[8px] md:text-[9px] uppercase font-bold text-gray-500 block">Solusi Desain Komunikasi Visual</span>
                             <span id="rep-proj-solution" class="font-bold text-white print-text-black">-</span>
                         </div>
                     </div>
                     <div>
-                        <span class="text-[9px] uppercase font-bold text-gray-500 block">Material Berkelanjutan Terpilih</span>
+                        <span class="text-[8px] md:text-[9px] uppercase font-bold text-gray-500 block">Material Berkelanjutan Terpilih</span>
                         <span id="rep-proj-material" class="font-bold text-emerald-400 print-text-black">-</span>
                     </div>
                 </div>
 
                 <!-- Self Assessment & Reflection Checklist -->
-                <div class="mb-6 bg-gray-900/30 border border-gray-900 p-5 rounded-2xl print-border text-xs">
-                    <h4 class="text-xs font-bold uppercase text-purple-400 tracking-wider mb-3">📝 Refleksi Siswa & Self-Assessment:</h4>
-                    <div class="space-y-2.5 text-slate-300">
-                        <label class="flex items-center gap-2.5 cursor-pointer">
-                            <input type="checkbox" id="ref-q1" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950">
-                            Saya telah memahami profil macam-macam profesi bidang DKV & grafika secara menyeluruh.
+                <div class="mb-5 bg-gray-900/30 border border-gray-900 p-4.5 rounded-xl print-border text-xs">
+                    <h4 class="text-xs font-bold uppercase text-purple-400 tracking-wider mb-2.5">📝 Refleksi & Evaluasi Mandiri:</h4>
+                    <div class="space-y-2 text-slate-300">
+                        <label class="flex items-start gap-2.5 cursor-pointer">
+                            <input type="checkbox" id="ref-q1" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950 mt-0.5">
+                            Saya telah memahami profil profesi bidang DKV & grafika secara menyeluruh.
                         </label>
-                        <label class="flex items-center gap-2.5 cursor-pointer">
-                            <input type="checkbox" id="ref-q2" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950">
-                            Saya memahami transisi perkembangan teknologi desain cetak dari era manual hingga era modern (AI).
+                        <label class="flex items-start gap-2.5 cursor-pointer">
+                            <input type="checkbox" id="ref-q2" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950 mt-0.5">
+                            Saya memahami transisi teknologi cetak dari era manual ke modern (AI).
                         </label>
-                        <label class="flex items-center gap-2.5 cursor-pointer">
-                            <input type="checkbox" id="ref-q3" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950">
-                            Saya telah memahami pentingnya implementasi sustainable design (3R) dalam ekonomi sirkular.
+                        <label class="flex items-start gap-2.5 cursor-pointer">
+                            <input type="checkbox" id="ref-q3" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950 mt-0.5">
+                            Saya telah memahami pentingnya implementasi sustainable design (3R).
                         </label>
-                        <label class="flex items-center gap-2.5 cursor-pointer">
-                            <input type="checkbox" id="ref-q4" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950">
-                            Saya memahami dan mampu menerapkan tahapan proses berpikir kreatif metode Design Thinking.
+                        <label class="flex items-start gap-2.5 cursor-pointer">
+                            <input type="checkbox" id="ref-q4" checked class="rounded border-gray-800 text-indigo-600 focus:ring-0 w-4 h-4 bg-gray-950 mt-0.5">
+                            Saya memahami dan mampu menerapkan langkah Design Thinking.
                         </label>
                     </div>
                 </div>
 
                 <!-- Textual Evaluation Block Output -->
-                <div class="space-y-5 text-xs">
-                    <div class="bg-gray-950 border border-emerald-900/40 p-5 rounded-2xl shadow-inner print-border">
+                <div class="space-y-4 text-xs">
+                    <div class="bg-gray-950 border border-emerald-900/40 p-4.5 rounded-xl shadow-inner print-border">
                         <h4 class="text-xs font-bold uppercase text-emerald-400 tracking-widest flex items-center gap-2">♻️ Analisis Siklus Hidup Kemasan (Life Cycle Assessment)</h4>
-                        <div id="rep-lca-box" class="text-slate-300 text-xs md:text-sm mt-3 space-y-2.5 leading-relaxed font-medium"></div>
+                        <div id="rep-lca-box" class="text-slate-300 text-xs md:text-sm mt-2.5 space-y-2 leading-relaxed font-medium"></div>
                     </div>
 
-                    <div class="bg-gray-950 p-5 rounded-2xl border border-gray-900 shadow-inner print-border">
-                        <h4 class="text-xs font-bold uppercase text-indigo-400 tracking-widest">Rekomendasi Tingkat Kelulusan Guru</h4>
-                        <p id="rep-evaluation" class="text-slate-400 text-xs md:text-sm mt-2.5 leading-relaxed font-medium">
+                    <div class="bg-gray-950 p-4.5 rounded-xl border border-gray-900 shadow-inner print-border">
+                        <h4 class="text-xs font-bold uppercase text-indigo-400 tracking-widest">Rekomendasi Kelulusan Guru</h4>
+                        <p id="rep-evaluation" class="text-slate-400 text-xs md:text-sm mt-2 leading-relaxed font-medium">
                             Mengevaluasi keselarasan konfigurasi...
                         </p>
                     </div>
                     
-                    <div class="pt-2 space-y-2">
-                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500">Esai Analisis Pribadi Praktikan (Tinjauan Deskriptif Seni Mandiri)</label>
-                        <textarea id="rep-essay" placeholder="Tulis rangkuman argumentasi teknis Anda mengenai keselarasan unsur rupa nirmana dan aspek kelestarian lingkungan (3R) dari hasil prototype buatan Anda sendiri di atas..." class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-4 text-xs md:text-sm focus:outline-none focus:border-indigo-500 font-medium tracking-wide transition-all shadow-inner placeholder:text-gray-700"></textarea>
+                    <div class="pt-1.5 space-y-2">
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-gray-500">Esai Analisis Pribadi Praktikan (Evaluasi Mandiri)</label>
+                        <textarea id="rep-essay" placeholder="Tulis esai singkat mengenai argumen pemilihan material & prinsip estetika nirmana kemasan buatan Anda..." class="w-full bg-gray-950 text-white border border-gray-800 rounded-xl p-3 text-xs md:text-sm focus:outline-none focus:border-indigo-500 font-medium tracking-wide transition-all shadow-inner placeholder:text-gray-700 min-h-[90px]"></textarea>
                     </div>
                 </div>
             </section>
@@ -868,7 +877,7 @@
     </main>
 
     <!-- FOOTER SECTION -->
-    <footer class="bg-gray-950 border-t border-gray-900/60 py-5 text-center text-[10px] text-gray-500 tracking-wide print-hidden">
+    <footer class="bg-gray-950 border-t border-gray-900/60 py-4 text-center text-[9px] md:text-[10px] text-gray-500 tracking-wide print-hidden">
         &copy; 2026 Simulator DKV & Eco-Packaging v3.0. Media Pembelajaran Interaktif Mandiri SMK DKV Fase E.
     </footer>
 
@@ -897,14 +906,14 @@
             if(mode === 'modul') {
                 document.getElementById('panel-modul').classList.remove('hidden');
                 document.getElementById('panel-sim').classList.add('hidden');
-                document.getElementById('tab-modul').className = "px-4 py-2 rounded-xl font-bold transition-all duration-300 text-indigo-300 bg-gray-950 border border-gray-800/80 shadow-md";
-                document.getElementById('tab-sim').className = "px-4 py-2 rounded-xl font-bold transition-all duration-300 text-slate-400 hover:text-white";
+                document.getElementById('tab-modul').className = "px-3 md:px-4 py-2 rounded-lg font-bold transition-all duration-300 text-indigo-300 bg-gray-950 border border-gray-800/80 shadow-md";
+                document.getElementById('tab-sim').className = "px-3 md:px-4 py-2 rounded-lg font-bold transition-all duration-300 text-slate-400 hover:text-white";
                 Sound.play('transition');
             } else {
                 document.getElementById('panel-modul').classList.add('hidden');
                 document.getElementById('panel-sim').classList.remove('hidden');
-                document.getElementById('tab-sim').className = "px-4 py-2 rounded-xl font-bold transition-all duration-300 text-indigo-300 bg-gray-950 border border-gray-800/80 shadow-md";
-                document.getElementById('tab-modul').className = "px-4 py-2 rounded-xl font-bold transition-all duration-300 text-slate-400 hover:text-white";
+                document.getElementById('tab-sim').className = "px-3 md:px-4 py-2 rounded-lg font-bold transition-all duration-300 text-indigo-300 bg-gray-950 border border-gray-800/80 shadow-md";
+                document.getElementById('tab-modul').className = "px-3 md:px-4 py-2 rounded-lg font-bold transition-all duration-300 text-slate-400 hover:text-white";
                 Sound.play('transition');
             }
         }
@@ -913,10 +922,10 @@
         function switchMateri(secNum) {
             for (let i = 1; i <= 4; i++) {
                 document.getElementById(`materi-sec-${i}`).classList.add('hidden');
-                document.getElementById(`btn-mat-${i}`).className = "px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap bg-gray-900 text-slate-400 hover:text-white";
+                document.getElementById(`btn-mat-${i}`).className = "px-3.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap snap-start bg-gray-900 text-slate-400 hover:text-white";
             }
             document.getElementById(`materi-sec-${secNum}`).classList.remove('hidden');
-            document.getElementById(`btn-mat-${secNum}`).className = "px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap bg-indigo-600 text-white shadow-md";
+            document.getElementById(`btn-mat-${secNum}`).className = "px-3.5 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap snap-start bg-indigo-600 text-white shadow-md";
             Sound.play('click');
         }
 
@@ -937,13 +946,13 @@
                 scores.design = Math.min(100, scores.design + 15);
                 updateUIBars();
                 Sound.play('success');
-                r1.className = "flex flex-col md:flex-row items-start md:items-center justify-between gap-3 p-3 bg-emerald-950/20 rounded-xl border border-emerald-500/50 transition-all";
-                r2.className = "flex flex-col md:flex-row items-start md:items-center justify-between gap-3 p-3 bg-emerald-950/20 rounded-xl border border-emerald-500/50 transition-all";
+                r1.className = "flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 p-3 bg-emerald-950/20 rounded-xl border border-emerald-500/50 transition-all";
+                r2.className = "flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 p-3 bg-emerald-950/20 rounded-xl border border-emerald-500/50 transition-all";
                 alert("Jawaban Anda Benar! Pemahaman kognitif Anda tentang profesi DKV bertambah (+15 Rupa Nirmana).");
             } else {
                 Sound.play('alert');
-                r1.className = "flex flex-col md:flex-row items-start md:items-center justify-between gap-3 p-3 bg-rose-950/20 rounded-xl border border-rose-500/50 transition-all";
-                r2.className = "flex flex-col md:flex-row items-start md:items-center justify-between gap-3 p-3 bg-rose-950/20 rounded-xl border border-rose-500/50 transition-all";
+                r1.className = "flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 p-3 bg-rose-950/20 rounded-xl border border-rose-500/50 transition-all";
+                r2.className = "flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 p-3 bg-rose-950/20 rounded-xl border border-rose-500/50 transition-all";
                 alert("Jawaban kurang tepat. Periksa kembali kecocokan tugas dengan bidang profesinya.");
             }
         }
@@ -958,11 +967,9 @@
             const circle = document.getElementById('playground-circle');
 
             if (line && circle) {
-                // Update Line Stroke Width & Color
                 line.setAttribute('stroke-width', strokeVal);
                 line.setAttribute('stroke', colorVal);
 
-                // Update Jarak (Space) via X position
                 const baseLineX2 = 120 - parseInt(spaceVal);
                 line.setAttribute('x2', baseLineX2.toString());
 
@@ -982,37 +989,36 @@
             const btnDigital = document.getElementById('btn-era-digital');
             const btnModern = document.getElementById('btn-era-modern');
 
-            // Reset buttons style
-            btnManual.className = "p-3 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-xs font-bold transition-all";
-            btnDigital.className = "p-3 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-xs font-bold transition-all";
-            btnModern.className = "p-3 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-xs font-bold transition-all";
+            btnManual.className = "p-2 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]";
+            btnDigital.className = "p-2 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]";
+            btnModern.className = "p-2 bg-gray-900 text-slate-400 border border-gray-800 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]";
 
             Sound.play('click');
 
             if (era === 'manual') {
-                btnManual.className = "p-3 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-xs font-bold transition-all";
+                btnManual.className = "p-2 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]";
                 title.innerText = "Era Cetak Manual";
                 desc.innerText = "Pembuatan karya seni visual murni menggunakan pensil, kuas, cat fisik, serta pencetakan manual seperti cukil kayu, sablon kain, dan plat tembaga. Presisi sangat bertumpu pada keterampilan tangan seniman.";
                 svgHolder.innerHTML = `
-                    <svg class="w-16 h-16 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg class="w-12 h-12 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-1.5M14 17l-1.5-1.5M11 20l-4-4 2.5-2.5 4 4L11 20zM3 13l4.5-4.5M11 2L2 11l5 5 9-9-5-5z"/>
                     </svg>`;
             } else if (era === 'digital') {
-                btnDigital.className = "p-3 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-xs font-bold transition-all";
+                btnDigital.className = "p-2 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]";
                 title.innerText = "Era Desain Digital";
                 desc.innerText = "Masuknya era komputerisasi grafis. Penggunaan software manipulasi piksel (bitmap) dan kalkulasi matematis vektor (pen tool), disusul mesin printer digital berbasis tinta toner warna.";
                 svgHolder.innerHTML = `
-                    <svg class="w-16 h-16 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg class="w-12 h-12 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                         <line x1="8" y1="21" x2="16" y2="21"/>
                         <line x1="12" y1="17" x2="12" y2="21"/>
                     </svg>`;
             } else if (era === 'modern') {
-                btnModern.className = "p-3 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-xs font-bold transition-all";
+                btnModern.className = "p-2 bg-indigo-900/40 text-indigo-200 border border-indigo-700/50 rounded-xl text-[10px] md:text-xs font-bold transition-all min-h-[40px]";
                 title.innerText = "Era Cetak Modern & AI";
                 desc.innerText = "Pemberdayaan kecerdasan buatan (Generative AI), cetak 3 dimensi yang presisi, interaksi realitas tertambah (AR/VR), serta otomatisasi cetak industrial berkecepatan tinggi dengan tinta ramah lingkungan.";
                 svgHolder.innerHTML = `
-                    <svg class="w-16 h-16 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg class="w-12 h-12 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
                         <path d="M12 6v12M6 12h12"/>
                     </svg>`;
@@ -1033,7 +1039,6 @@
                 alert(`Kurang tepat. Tindakan tersebut sebenarnya masuk kategori ${activeGameItem.ans.toUpperCase()}. Coba objek berikutnya!`);
             }
 
-            // Move to next item
             current3RIndex = (current3RIndex + 1) % game3RItems.length;
             document.getElementById('game-active-text').innerText = game3RItems[current3RIndex].text;
         }
@@ -1054,7 +1059,7 @@
             
             document.getElementById('stage-login').classList.add('hidden');
             document.getElementById('stage-career').classList.remove('hidden');
-            document.getElementById('step-1-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-3 py-1.5 rounded-lg font-bold transition-all";
+            document.getElementById('step-1-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2 py-1 rounded transition-all";
             updateUIBars();
             Sound.play('success');
         }
@@ -1068,7 +1073,7 @@
             
             document.getElementById('stage-career').classList.add('hidden');
             document.getElementById('stage-chat').classList.remove('hidden');
-            document.getElementById('step-2-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-3 py-1.5 rounded-lg font-bold transition-all";
+            document.getElementById('step-2-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2 py-1 rounded transition-all";
             updateUIBars();
             Sound.play('success');
         }
@@ -1081,7 +1086,7 @@
             
             document.getElementById('stage-chat').classList.add('hidden');
             document.getElementById('stage-materials').classList.remove('hidden');
-            document.getElementById('step-3-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-3 py-1.5 rounded-lg font-bold transition-all";
+            document.getElementById('step-3-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2 py-1 rounded transition-all";
             updateLiveMockup();
             updateUIBars();
             Sound.play('success');
@@ -1102,7 +1107,6 @@
             const badgeTxt = document.getElementById('artwork-badge-text');
             const feedbackText = document.getElementById('live-design-feedback');
             
-            // 1. Evaluasi Komposisi Estetika Ragam Rupa Visual
             if (vis === 'minimalist') {
                 title.setAttribute('fill', '#4A351D');
                 subtitle.setAttribute('fill', '#2E1F10');
@@ -1123,7 +1127,6 @@
                 feedbackText.innerText = "Kaidah Nirmana: Kontras saturasi ekstrem memicu efek daya pikat pandang pertama konsumen (*stopping-power*). Namun berisiko tinggi memicu distorsi warna jika diaplikasikan di atas media Kraft cokelat berserat.";
             }
 
-            // 2. Evaluasi Atribut Karakteristik Material Struktur
             if(mat === 'kraft') {
                 bg.setAttribute('fill', 'url(#kraft-pattern)');
                 bg.setAttribute('stroke', '#9e7e5d');
@@ -1147,7 +1150,6 @@
                 document.getElementById('live-cost').innerText = "Rp 800 / pcs";
             }
             
-            // Sinkronisasi Indikator Label Teks
             document.getElementById('lbl-mat').innerText = mat.toUpperCase();
             document.getElementById('lbl-ink').innerText = ink === 'soy' ? 'SOY INK' : 'SOLVENT';
             document.getElementById('lbl-style').innerText = vis === 'minimalist' ? 'MINIMALIS' : 'VIBRANT';
@@ -1195,7 +1197,6 @@
             
             updateUIBars();
             
-            // Injeksi Nilai Ke Lembar Output Portofolio Cetak
             document.getElementById('rep-name').innerText = studentData.nama;
             document.getElementById('rep-school').innerText = studentData.sekolah;
             document.getElementById('rep-career').innerText = studentData.karir;
@@ -1204,14 +1205,12 @@
             document.getElementById('rep-score-client').innerText = scores.client;
             document.getElementById('rep-score-eco').innerText = scores.eco;
 
-            // Injeksi Konsep Proyek Akhir
             document.getElementById('rep-proj-name').innerText = document.getElementById('proj-name').value || "Belum diisi";
             document.getElementById('rep-proj-target').innerText = document.getElementById('proj-target').value || "Belum diisi";
             document.getElementById('rep-proj-problem').innerText = document.getElementById('proj-problem').value || "Belum diisi";
             document.getElementById('rep-proj-solution').innerText = document.getElementById('proj-solution').value || "Belum diisi";
             document.getElementById('rep-proj-material').innerText = document.getElementById('proj-material-text').value || "Belum diisi";
 
-            // Generasi Tekstual Narasi Siklus Hidup Berdasarkan Atribut Material Pilihan
             const lcaBox = document.getElementById('rep-lca-box');
             let lcaHTML = "";
 
@@ -1227,7 +1226,6 @@
             }
             lcaBox.innerHTML = lcaHTML;
 
-            // Logika Narasi Rekomendasi Kelulusan Guru Berdasarkan Akumulasi Skor
             const evalText = document.getElementById('rep-evaluation');
             if (scores.eco >= 75) {
                 evalText.innerText = `Kompeten & Sangat Direkomendasikan! Hasil karya rancangan Anda sungguh utuh menerapkan esensi Sustainable Design DKV kontemporer. Anda piawai memecahkan keluhan inti empati Ibu Sari secara berimbang: memelihara keserasian rupa grafis, memenuhi target fungsional pasar swalayan ritel, serta bertanggung jawab penuh terhadap mitigasi krisis ekologi global pasca-konsumsi.`;
@@ -1237,8 +1235,8 @@
             
             document.getElementById('stage-materials').classList.add('hidden');
             document.getElementById('stage-report').classList.remove('hidden');
-            document.getElementById('step-4-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-3 py-1.5 rounded-lg font-bold transition-all";
-            document.getElementById('step-5-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-3 py-1.5 rounded-lg font-bold transition-all";
+            document.getElementById('step-4-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2 py-1 rounded transition-all";
+            document.getElementById('step-5-lbl').className = "bg-indigo-950 text-indigo-300 border border-indigo-900/60 px-2 py-1 rounded transition-all";
             Sound.play('success');
         }
 
@@ -1254,7 +1252,7 @@
             
             btn.disabled = true;
             btn.innerText = "⏳ Menyimpan Portofolio...";
-            btn.className = "flex items-center gap-2 bg-gray-800 text-slate-500 px-5 py-3 rounded-xl font-bold text-xs pointer-events-none";
+            btn.className = "flex-1 md:flex-none flex items-center justify-center gap-1.5 bg-gray-800 text-slate-500 px-4 py-3 rounded-xl font-bold text-xs pointer-events-none min-h-[44px]";
 
             const payload = {
                 nama: studentData.nama,
@@ -1278,16 +1276,16 @@
             .then(() => {
                 Sound.play('success');
                 alert(`Selamat ${studentData.nama}! Berkas Lembar Kerja Praktikum (LKPD) Digital Anda telah sukses disimpan ke pangkalan data cloud Guru.`);
-                btn.innerText = "✅ Sukses Tersimpan";
-                btn.className = "flex items-center gap-2 bg-emerald-800 text-white px-5 py-3 rounded-xl font-bold text-xs pointer-events-none shadow-md";
+                btn.innerText = "✅ Tersimpan";
+                btn.className = "flex-1 md:flex-none flex items-center justify-center gap-1.5 bg-emerald-800 text-white px-4 py-3 rounded-xl font-bold text-xs pointer-events-none shadow-md min-h-[44px]";
             })
             .catch(error => {
                 console.error("Error:", error);
                 Sound.play('alert');
                 alert("Terdeteksi gangguan jaringan saat mengirim data. Silakan coba kembali beberapa saat lagi.");
                 btn.disabled = false;
-                btn.innerText = "📤 Simpan Cloud & Kirim Nilai";
-                btn.className = "flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-all";
+                btn.innerText = "Simpan Cloud";
+                btn.className = "flex-1 md:flex-none flex items-center justify-center gap-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-4 py-3 rounded-xl font-bold text-xs shadow-md transition-all min-h-[44px]";
             });
         }
 
@@ -1363,7 +1361,6 @@
             }
         };
 
-        // Initialize elements on load
         window.addEventListener('DOMContentLoaded', () => {
             updatePlaygroundUnsur();
         });
